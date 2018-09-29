@@ -5,7 +5,7 @@ import './header.css';
 import './App.css';
 // import data from './data';
 import data from './correctDataModel';
-//import dataScript from './dataScript';
+import dataScript from './dataScript';
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +14,8 @@ class App extends Component {
       isLoading: true,
       musicType: '',
       artistName: '',
-      album: '',
+      album: {},
+      song: {},
       message: '',
       randomIndex: null,
       videos: [],
@@ -23,7 +24,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.handleClickOnButton();
+    //this.handleClickOnButton();
   };
 
   randomNumber = (max) => {
@@ -49,6 +50,15 @@ class App extends Component {
       this.setState({artistName: randomArtist}, () => {
         // 3. from specific artist, choose random album/song name.
         const albumsNumbers = randomMusic.artists[randomArtistIndex].albums.length;
+        if (!albumsNumbers) {
+          const songsNumbers = randomMusic.artists[randomArtistIndex].songs.length;
+          const randomSongIndex = this.randomNumber(songsNumbers);
+          const randomSong = randomMusic.artists[randomArtistIndex].songs[randomSongIndex];
+          this.setState({song: randomSong}, () => {
+            const {title}= this.state.song;
+            this.handleYoutubeAPI(this.state.artistName, title);
+          });
+        }
         const randomAlbumIndex = this.randomNumber(albumsNumbers);
         const randomAlbum = randomMusic.artists[randomArtistIndex].albums[randomAlbumIndex];
         this.setState({album: randomAlbum}, () => {
@@ -76,6 +86,7 @@ class App extends Component {
   };
 
   handleYoutubeAPI = (artistName, albumTitle) => {
+    // Checker if artistName contains 'artistes divers'
     const API_key = "AIzaSyB5Gb2TJc5CLw0GRFDHOJXoF-HlF0bCP-g";
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${artistName} ${albumTitle}&key=${API_key}` ;
 
@@ -109,8 +120,10 @@ class App extends Component {
   };
 
   render() {
+    console.log(dataScript);
     const {isLoading, musicType, result, message, artistName, videos }= this.state;
     const albumTitle = this.state.album.title;
+    const songTitle = this.state.song.title;
     const opts = {
       height: '390',
       width: '640',
@@ -124,7 +137,7 @@ class App extends Component {
           <a href="#" id="musicType">{musicType}</a>
           <div className="artistName">{artistName}</div>
           <ul id="albumName">
-            <li><a href="#"><span>{albumTitle}</span></a></li>
+            <li><a href="#"><span>{albumTitle ? albumTitle : songTitle}</span></a></li>
           </ul>
           <div className="buttons-wrapper">
             {result === null ? null :

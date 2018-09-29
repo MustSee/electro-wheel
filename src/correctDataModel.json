@@ -216,6 +216,824 @@
           ]
         }
       ]
+    },
+    {
+      "musicGenre": "disco",
+      "artists": [
+        {
+          "name": "donna summer",
+          "albums": [],
+          "songs": [
+            {
+              "title": "\"I Feel Love\"",
+              "publisher": "Casablanca"
+            }
+          ]
+        },
+        {
+          "name": "martin circus",
+          "albums": [],
+          "songs": [
+            {
+              "title": "\"Disco Circus\"",
+              "publisher": "Prelude"
+            }
+          ]
+        },
+        {
+          "name": "sylvester",
+          "albums": [],
+          "songs": [
+            {
+              "title": "\"(You Make Me Feel) Mighty Real\"",
+              "publisher": "Fantasy"
+            },
+            {
+              "title": "\"Do You Wanna Funk?\"",
+              "publisher": "Fantasy"
+            }
+          ]
+        },
+        {
+          "name": "dinosaur l",
+          "albums": [],
+          "songs": [
+            {
+              "title": "\"Go Bang!\"",
+              "publisher": "Sleeping Bag"
+            }
+          ]
+        },
+        {
+          "name": "peech boys",
+          "albums": [],
+          "songs": [
+            {
+              "title": "\"Don't Make Me Wait\"",
+              "publisher": "West End"
+            }
+          ]
+        },
+        {
+          "name": "the JB's",
+          "albums": [
+            {
+              "title": "Damn Right I Am Somebody",
+              "publisher": "People"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "dexter wansell",
+          "albums": [],
+          "songs": [
+            {
+              "title": "\"Life on Mars\"",
+              "publisher": "Philadelphia International"
+            }
+          ]
+        },
+        {
+          "name": "parliament",
+          "albums": [
+            {
+              "title": "Mothership Connection",
+              "publisher": "Casablanca"
+            },
+            {
+              "title": "Funkentelechy vs the Placebo Syndrome",
+              "publisher": "Casablanca"
+            }
+          ],
+          "songs": []
+        }
+      ]
+    },
+    {
+      "musicGenre": "post-punk",
+      "artists": [
+        {
+          "name": "cabaret voltaire",
+          "albums": [
+            {
+              "title": "Red Mecca",
+              "publisher": "Rough Trade"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "chrome",
+          "albums": [
+            {
+              "title": "Alien Soundtracks",
+              "publisher": "Siren"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "coil",
+          "albums": [
+            {
+              "title": "Time Machines",
+              "publisher": "Eskaton"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "DAF",
+          "albums": [
+            {
+              "title": "Für immer",
+              "publisher": "Virgin"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "front 242",
+          "albums": [
+            {
+              "title": "Front By Front",
+              "publisher": "Epic"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "the residents",
+          "albums": [
+            {
+              "title": "Meet the Residents",
+              "publisher": "Ralph"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "suicide",
+          "albums": [
+            {
+              "title": "Suicide",
+              "publisher": "Red Star"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "throbbing gristle",
+          "albums": [
+            {
+              "title": "20 Jazz Funk Greats",
+              "publisher": "Mute"
+            }
+          ],
+          "songs": []
+        }
+      ]
+    },
+    {
+      "musicGenre": "house",
+      "artists": [
+        {
+          "name": "artistes divers",
+          "albums": [
+            {
+              "title": "The House That Trax Built",
+              "publisher": "Trax"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "artistes divers",
+          "albums": [
+            {
+              "title": "Classic Acid",
+              "publisher": "Mastercuts"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "green velvet",
+          "albums": [
+            {
+              "title": "Flash",
+              "publisher": "Relief"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "artistes divers",
+          "albums": [
+            {
+              "title": "Collective Sounds of Prescription",
+              "publisher": "Prescription Underground"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "bucketheads",
+          "albums": [
+            {
+              "title": "The Bomb",
+              "publisher": "Henry Street"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "moodyman",
+          "albums": [
+            {
+              "title": "Silent Introduction",
+              "publisher": "Planet E"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "deep dish",
+          "albums": [
+            {
+              "title": "Penetrate Deeper",
+              "publisher": "Tribal UK"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "daft punk",
+          "albums": [
+            {
+              "title": "Homework",
+              "publisher": "Virgin"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "tori amos",
+          "albums": [
+            {
+              "title": "Professional Widow Armand Van Helden Mix",
+              "publisher": "Atlantic"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "st germain",
+          "albums": [
+            {
+              "title": "Alabama Blues Revisited Todd Edwards Vocal Mix",
+              "publisher": "F Communications"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "187 lockdown",
+          "albums": [
+            {
+              "title": "Gunman",
+              "publisher": "East West Dance"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "dem 2",
+          "albums": [
+            {
+              "title": "Destiny New Vocal Mix",
+              "publisher": "Locked On"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "EZ",
+          "albums": [
+            {
+              "title": "Presents Underground Garage Flav's",
+              "publisher": "Breakdown Records"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "basic channel",
+          "albums": [
+            {
+              "title": "Phylyps Track 1/11",
+              "publisher": "Basic Channel"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "jephte guillame",
+          "albums": [
+            {
+              "title": "The Prayer",
+              "publisher": "Spiritual Life"
+            }
+          ],
+          "songs": []
+        }
+      ]
+    },
+    {
+      "musicGenre": "hip-hop",
+      "artists": [
+        {
+          "name": "afrika bambaataa & soul sonic force",
+          "albums": [],
+          "songs": [
+            {
+              "title": "\"Planet Rock”",
+              "publisher": "Tommy Boy"
+            }
+          ]
+        },
+        {
+          "name": "grandmaster flash",
+          "albums": [
+            {
+              "title": "Adventures of Grandmaster Flash on the Wheels of Steel",
+              "publisher": "Sugarhill"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "rammelzee vs k rob",
+          "albums": [],
+          "songs": [
+            {
+              "title": "\"Beat Bop”",
+              "publisher": "Profile"
+            }
+          ]
+        },
+        {
+          "name": "de la soul",
+          "albums": [
+            {
+              "title": "“Plug Tunin”",
+              "publisher": "Tommy Boy"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "the fearless four",
+          "albums": [],
+          "songs": [
+            {
+              "title": "\"Rockin' It”",
+              "publisher": "Enjoy"
+            }
+          ]
+        },
+        {
+          "name": "eric b & rakim",
+          "albums": [
+            {
+              "title": "“Follow the Leader”",
+              "publisher": "MCA"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "public enemy",
+          "albums": [
+            {
+              "title": "It Takes a Nation of Millions To Hold Us Back",
+              "publisher": "Def Jam"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "wu tang clan",
+          "albums": [
+            {
+              "title": "Enter the Wu Tang (36 Chambers)",
+              "publisher": "RCA/BMG"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "phonosycograph",
+          "albums": [
+            {
+              "title": "Ancient Termites",
+              "publisher": "Bomb Hip Hop"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "outkast",
+          "albums": [
+            {
+              "title": "Aquemini",
+              "publisher": "LaFace"
+            }
+          ],
+          "songs": []
+        }
+      ]
+    },
+    {
+      "musicGenre": "techno",
+      "artists": [
+        {
+          "name": "model 500",
+          "albums": [
+            {
+              "title": "Classics",
+              "publisher": "R&S"
+            },
+            {
+              "title": "Deep Space",
+              "publisher": "R&S"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "cybotron",
+          "albums": [
+            {
+              "title": "Clear",
+              "publisher": "Fantasy"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "derrick may",
+          "albums": [
+            {
+              "title": "Innovator",
+              "publisher": "Transmat/Never"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "kevin saunderson",
+          "albums": [
+            {
+              "title": "Faces & Phases",
+              "publisher": "Planet E"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "e dancer",
+          "albums": [
+            {
+              "title": "Heavenly",
+              "publisher": "Planet E"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "paperclip people",
+          "albums": [
+            {
+              "title": "The Secret Tapes of Dr Eich",
+              "publisher": "Planet E"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "69",
+          "albums": [
+            {
+              "title": "The Sound of Music",
+              "publisher": "R&S"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "psyche/bfc",
+          "albums": [
+            {
+              "title": "Elements 1989 1990",
+              "publisher": "Planet E"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "artistes divers",
+          "albums": [
+            {
+              "title": "Intergalactic Beats",
+              "publisher": "Planet E"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "plastikman",
+          "albums": [
+            {
+              "title": "Consumed",
+              "publisher": "Minus Novamute"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "underground resistance",
+          "albums": [
+            {
+              "title": "Revolution Through Change"
+            },
+            {
+              "title": "Interstellar Fugitives"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "moodymann",
+          "albums": [
+            {
+              "title": "Silent Introduction",
+              "publisher": "Planet E"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "theo parrish",
+          "albums": [
+            {
+              "title": "First Floor",
+              "publisher": "Sound Signature/Peace Frog"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "drexciya",
+          "albums": [
+            {
+              "title": "The Journey Home"
+            },
+            {
+              "title": "The Quest"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "artistes divers",
+          "albums": [
+            {
+              "title": "From Beyond",
+              "publisher": "Interdimensional Transmissions"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "artistes divers",
+          "albums": [
+            {
+              "title": "Techno Bass : The Mission",
+              "publisher": "Direct Beat"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "artistes divers",
+          "albums": [
+            {
+              "title": "Detroit : Beyond the Third Wave",
+              "publisher": "Astralwerks"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "dj assault",
+          "albums": [
+            {
+              "title": "Belle Isle Tech",
+              "publisher": "Assault Rifle/Electrofunk"
+            }
+          ],
+          "songs": []
+        }
+      ]
+    },
+    {
+      "musicGenre": "jungle",
+      "artists": [
+        {
+          "name": "metalheadz",
+          "albums": [],
+          "songs": [
+            {
+              "title": "\"Terminator\"",
+              "publisher": "Synthetic Hardcore Phonography"
+            }
+          ]
+        },
+        {
+          "name": "hyper on experience",
+          "albums": [],
+          "songs": [
+            {
+              "title": "\"Lords of the Null Lines\"",
+              "publisher": "Moving Shadow"
+            }
+          ]
+        },
+        {
+          "name": "droppin' science",
+          "albums": [
+            {
+              "title": "Droppin Science Volume 1",
+              "publisher": "Droppin' Science"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "shy fx and uk apache",
+          "albums": [],
+          "songs": [
+            {
+              "title": "\"Original Nuttah\"",
+              "publisher": "SOUR"
+            }
+          ]
+        },
+        {
+          "name": "ltj bukem",
+          "albums": [],
+          "songs": [
+            {
+              "title": "\"Music\"",
+              "publisher": "Good Looking"
+            }
+          ]
+        },
+        {
+          "name": "omni trio",
+          "albums": [
+            {
+              "title": "Volume Four",
+              "publisher": "Moving Shadow"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "ganja cru",
+          "albums": [
+            {
+              "title": "Super Sharp Shooter EP",
+              "publisher": "Parousia"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "ed rush",
+          "albums": [
+            {
+              "title": "Skylab",
+              "publisher": "Metalheads"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "aphex twin",
+          "albums": [
+            {
+              "title": "Boy/Girl EP",
+              "publisher": "Warp"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "photek",
+          "albums": [
+            {
+              "title": "Ni Ten Ichi Ryu",
+              "publisher": "Science"
+            }
+          ],
+          "songs": []
+        }
+      ]
+    },
+    {
+      "musicGenre": "ambient",
+      "artists": [
+        {
+          "name": "brian eno",
+          "albums": [
+            {
+              "title": "Another Green World",
+              "publisher": "EG"
+            },
+            {
+              "title": "Discreet Music",
+              "publisher": "EG"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "brian eno & jon hassell",
+          "albums": [
+            {
+              "title": "Possible Musics : Fourth World",
+              "publisher": "EG"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "the orb",
+          "albums": [
+            {
+              "title": "The Orb's Adventures Beyond the Ultraworld",
+              "publisher": "Big Life"
+            }
+          ],
+          "songs": [
+            {
+              "title": "\"A Huge Ever Growing Pulsating Brain That Rules From the Centre of the Ultraworld\"",
+              "publisher": "Big Life"
+            }
+          ]
+        },
+        {
+          "name": "klf",
+          "albums": [
+            {
+              "title": "Chill Out",
+              "publisher": "KLF Communications"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "irresistible force (mixmaster morris)",
+          "albums": [
+            {
+              "title": "Flying High",
+              "publisher": "Rising High"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "aphex twin",
+          "albums": [
+            {
+              "title": "Selected Ambient Works 85 92",
+              "publisher": "R&S"
+            },
+            {
+              "title": "Classics",
+              "publisher": "R&S"
+            }
+          ],
+          "songs": []
+        }
+      ]
+    },
+    {
+      "musicGenre": "downtempo",
+      "artists": []
     }
   ]
 }
