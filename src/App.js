@@ -115,8 +115,8 @@ class App extends Component {
 
   render() {
     const {isLoading, musicType, result, message, artistName, videos }= this.state;
-    const albumTitle = this.state.album.title;
-    const songTitle = this.state.song.title;
+    const albumTitle = this.state.album ? this.state.album.title : null;
+    const songTitle = this.state.song ? this.state.song.title : null;
     const opts = {
       height: '390',
       width: '640',
