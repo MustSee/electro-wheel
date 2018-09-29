@@ -10,9 +10,10 @@ class App extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      musicType: 'ambient',
-      albumName: 'another green world',
+      musicType: '',
+      albumName: '',
       message: '',
+      randomIndex: null,
       videos: [
         {
           id:
@@ -43,17 +44,25 @@ class App extends Component {
     this.handleClickOnButton();
   };
 
+  randomNumber = (max) => {
+    return Math.floor(Math.random() * max);
+  };
+
   handleClickOnButton = () => {
     this.setState({isLoading: true, message: ''});
     // 1. from data.length, choose one music type randomly
     const length = data.music.length;
-    const randomIndex = Math.floor(Math.random() * length) + 1;
-    const randomMusic = data.music[randomIndex - 1];
+    let randomIndex = this.randomNumber(length);
+    while (randomIndex === this.state.randomIndex) {
+       randomIndex = this.randomNumber(length);
+    }
+    this.setState({randomIndex});
+    const randomMusic = data.music[randomIndex];
     this.setState({musicType: randomMusic.musicType}, () => {
       // 2. from specific object, choose random album name.
       const albumsLength = randomMusic.albumName.length;
-      const randomIndex2 = Math.floor(Math.random() * albumsLength) + 1;
-      const randomAlbum = randomMusic.albumName[randomIndex2 - 1];
+      const randomIndex2 = this.randomNumber(albumsLength);
+      const randomAlbum = randomMusic.albumName[randomIndex2];
       this.setState({albumName: randomAlbum}, () => {
         const {albumName}= this.state;
         this.handleYoutubeAPI(albumName);
