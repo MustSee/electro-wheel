@@ -3,8 +3,9 @@ import axios from 'axios';
 import YouTube from 'react-youtube';
 import './header.css';
 import './App.css';
-import data from './data';
-import dataScript from './dataScript';
+// import data from './data';
+import data from './correctDataModel';
+//import dataScript from './dataScript';
 
 class App extends Component {
   constructor(props) {
@@ -12,31 +13,11 @@ class App extends Component {
     this.state = {
       isLoading: true,
       musicType: '',
-      albumName: '',
+      artistName: '',
+      album: '',
       message: '',
       randomIndex: null,
-      videos: [
-        {
-          id:
-            { videoId: '1' }
-        },
-        {
-          id:
-            { videoId: '2' }
-        },
-        {
-          id:
-            { videoId: '3' }
-        },
-        {
-          id:
-            { videoId: '4' }
-        },
-        {
-          id:
-            { videoId: '5' }
-        },
-      ],
+      videos: [],
       result: null
     }
   }
@@ -59,14 +40,21 @@ class App extends Component {
     }
     this.setState({randomIndex});
     const randomMusic = data.music[randomIndex];
-    this.setState({musicType: randomMusic.musicType}, () => {
-      // 2. from specific object, choose random album name.
-      const albumsLength = randomMusic.albumName.length;
-      const randomIndex2 = this.randomNumber(albumsLength);
-      const randomAlbum = randomMusic.albumName[randomIndex2];
-      this.setState({albumName: randomAlbum}, () => {
-        const {albumName}= this.state;
-        this.handleYoutubeAPI(albumName);
+    console.log('randomMusic', randomMusic);
+    this.setState({musicType: randomMusic.musicGenre}, () => {
+      // 2. Choose random artist from genre
+      const artistsNumber = randomMusic.artists.length;
+      const randomArtistIndex = this.randomNumber(artistsNumber);
+      const randomArtist = randomMusic.artists[randomArtistIndex].name;
+      this.setState({artistName: randomArtist}, () => {
+        // 3. from specific artist, choose random album/song name.
+        const albumsNumbers = randomMusic.artists[randomArtistIndex].albums.length;
+        const randomAlbumIndex = this.randomNumber(albumsNumbers);
+        const randomAlbum = randomMusic.artists[randomArtistIndex].albums[randomAlbumIndex];
+        this.setState({album: randomAlbum}, () => {
+          const {title}= this.state.album;
+          this.handleYoutubeAPI(this.state.artistName, title);
+        });
       });
     });
   };
@@ -87,25 +75,31 @@ class App extends Component {
     }
   };
 
-  handleYoutubeAPI = (albumName) => {
-    {/*const API_key = "AIzaSyB5Gb2TJc5CLw0GRFDHOJXoF-HlF0bCP-g";
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${albumName}&key=${API_key}` ;
+  handleYoutubeAPI = (artistName, albumTitle) => {
+    const API_key = "AIzaSyB5Gb2TJc5CLw0GRFDHOJXoF-HlF0bCP-g";
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${artistName} ${albumTitle}&key=${API_key}` ;
 
     axios.get(url).then((res) => {
       console.log('res', res);
-      console.log(res.data.items)
+      console.log(res.data.items);
+      // Temporary fix : if we receive PlayList from API, do not include them in videos
+      let filteredItems = res.data.items.filter((item) => {
+        return !!item.id.videoId;
+      });
+      console.log('filteredItems', filteredItems);
       this.setState({
-        videos: res.data.items,
+        videos: filteredItems,
         isLoading: false,
         result: 0
       });
-    }).catch((error) => console.log('error', error)); */}
+    }).catch((error) => console.log('error', error));
 
+    {/*
     this.setState({
       isLoading: false,
       result: 0
     });
-
+    */}
   };
 
   _onReady = (event) => {
@@ -115,8 +109,8 @@ class App extends Component {
   };
 
   render() {
-    console.log('dataScript', dataScript);
-    const {isLoading, musicType, albumName, result, message }= this.state;
+    const {isLoading, musicType, result, message, artistName, videos }= this.state;
+    const albumTitle = this.state.album.title;
     const opts = {
       height: '390',
       width: '640',
@@ -128,8 +122,9 @@ class App extends Component {
       <div className="App">
         <div id="header">
           <a href="#" id="musicType">{musicType}</a>
+          <div className="artistName">{artistName}</div>
           <ul id="albumName">
-            <li><a href="#"><span>{albumName}</span></a></li>
+            <li><a href="#"><span>{albumTitle}</span></a></li>
           </ul>
           <div className="buttons-wrapper">
             {result === null ? null :
@@ -146,7 +141,7 @@ class App extends Component {
           <div className="video">
             {isLoading ? null :
               <YouTube
-                videoId={this.state.videos[this.state.result].id.videoId}
+                videoId={videos[this.state.result].id.videoId}
                 opts={opts}
                 onReady={this._onReady}
               />
