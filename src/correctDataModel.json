@@ -1,0 +1,223 @@
+{
+  "music": [
+    {
+      "musicGenre": "musique concrète",
+      "artists": [
+        {
+          "name": "pierre schaeffer",
+          "albums": [
+            {
+              "title": "Complete Works",
+              "publisher": "INA/GRM"
+            }
+          ]
+        },
+        {
+          "name": "pierre henry",
+          "albums": [
+            {
+              "title": "L'Homme à la caméra",
+              "publisher": "Mantra"
+            },
+            {
+              "title": "Fragments pour Artaud",
+              "publisher": "Mantra"
+            },
+            {
+              "title": "Le Voyage",
+              "publisher": "Mantra"
+            }
+          ]
+        },
+        {
+          "name": "karlheinz stockhausen",
+          "albums": [
+            {
+              "title": "Hymnen",
+              "publisher": "Stockhausen Verlag"
+            },
+            {
+              "title": "Kontakte",
+              "publisher": "Stockhausen Verlag"
+            },
+            {
+              "title": "Telemusik",
+              "publisher": "Stockhausen Verlag"
+            }
+          ]
+        },
+        {
+          "name": "david tudor",
+          "albums": [
+            {
+              "title": "Rainforest",
+              "publisher": "Lovely Music"
+            }
+          ]
+        },
+        {
+          "name": "iannis xenakis",
+          "albums": [
+            {
+              "title": "Electronic Music",
+              "publisher": "EMF"
+            }
+          ]
+        },
+        {
+          "name": "luc ferrari",
+          "albums": [
+            {
+              "title": "Acousmatrix 3",
+              "publisher": "INA/GRM"
+            }
+          ]
+        },
+        {
+          "name": "vittorio gelmetti",
+          "albums": [
+            {
+              "title": "Musiche Elettroniche",
+              "publisher": "Nepless"
+            }
+          ]
+        },
+        {
+          "name": "BBC radiophonic workshop",
+          "albums": [
+            {
+              "title": "Tomb of the Cybermen",
+              "publisher": "Via Satellite"
+            }
+          ]
+        },
+        {
+          "name": "rune lindblad",
+          "albums": [
+            {
+              "title": "Death of the Moon",
+              "publisher": "Pogus"
+            }
+          ]
+        },
+        {
+          "name": "tod dockstader",
+          "albums": [
+            {
+              "title": "Quatermass",
+              "publisher": "Starkland"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "musicGenre": "krautrock",
+      "artists": [
+        {
+          "name": "can",
+          "albums": [
+            {
+              "title": "Tago Mago"
+            },
+            {
+              "title": "Future Days"
+            },
+            {
+              "title": "Soon Over Babaluma"
+            }
+          ]
+        },
+        {
+          "name": "neu!",
+          "albums": [
+            {
+              "title": "Neu!"
+            },
+            {
+              "title": "Neu! 2"
+            },
+            {
+              "title": "Neu! 75"
+            }
+          ]
+        },
+        {
+          "name": "faust",
+          "albums": [
+            {
+              "title": "Faust"
+            },
+            {
+              "title": "So Far"
+            },
+            {
+              "title": "The Faust Tapes"
+            },
+            {
+              "title": "Faust IV"
+            }
+          ]
+        },
+        {
+          "name": "cluster",
+          "albums": [
+            {
+              "title": "Cluster II"
+            }
+          ]
+        },
+        {
+          "name": "kraftwerk",
+          "albums": [
+            {
+              "title": "Kraftwerk 2"
+            }
+          ]
+        },
+        {
+          "name": "amon duul II",
+          "albums": [
+            {
+              "title": "Yeti"
+            }
+          ]
+        },
+        {
+          "name": "popol vuh",
+          "albums": [
+            {
+              "title": "In den Garten Pharaos"
+            }
+          ]
+        },
+        {
+          "name": "ash ra tempel",
+          "albums": [
+            {
+              "title": "Join Inn"
+            }
+          ]
+        },
+        {
+          "name": "cosmic jokers",
+          "albums": [
+            {
+              "title": "Planeten Sit In"
+            }
+          ]
+        },
+        {
+          "name": "harmonia",
+          "albums": [
+            {
+              "title": "Musik von Harmonia"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+

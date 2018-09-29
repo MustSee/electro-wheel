@@ -2,6 +2,8 @@
 
 // Toujours, le nom des artistes est en majuscule
 // On pase à l'artiste suivant par l'intermédiaire de " - "
+// En dernière position, avec ou sans la date, il y a la maison d'édition.
+
 
 let concrete =
   "PIERRE SCHAEFFER, Complete Works, INA/GRM - " +
@@ -15,10 +17,73 @@ let concrete =
   "RUNE LINDBLAD, Death of the Moon, Pogus - " +
   "TOD DOCKSTADER, Quatermass, Starkland.";
 
+var dataByArtist = [];
+var oneArtist = "";
+
+function polishingData(music) {
+  for (let i=0; i < music.length; i++) {
+    if (music[i] !== '-') {
+      if(music[i] === '.') {
+        dataByArtist.push(oneArtist);
+        oneArtist = "";
+      }
+      oneArtist = oneArtist + music[i];
+    } else {
+      dataByArtist.push(oneArtist);
+      oneArtist = "";
+    }
+  }
+  console.log('dataByArtist', dataByArtist);
+  var betterData = [];
+  var artistData = {};
+  dataByArtist.forEach((artist) => {
+    var arrayOfString = artist.split(',');
+    artistData.name = arrayOfString[0].trim().toLowerCase();
+    artistData.otherData = arrayOfString.slice(1);
+    console.log('artistData.otherData', artistData.otherData);
+    //let lastIndex = artistData.otherData.length - 1;
+    //console.log('lastIndex', lastIndex);
+    //let publisher = artistData.otherData[lastIndex];
+    let albums = [];
+    artistData.otherData.forEach((value, i) => {
+      //if (i !== lastIndex) {
+        let album = {
+          title: value.trim(),
+          //publisher: publisher.trim(),
+        };
+        albums.push(album);
+      //}
+    });
+    let newArtistData = {
+      name: artistData.name,
+      albums: albums
+    };
+    betterData.push(newArtistData);
+    artistData = {};
+  });
+  console.log('betterData', betterData);
+
+}
+
 // Krautrock
 
 // On ne sait pas toujours si c'est un titre ou un éditeur de musique
 // Germanofon, Spoon + l'année après, INA ci-dessus, EMF, Casablanca => faire une liste ?
+
+let workingDatasKrautrock =
+  "CAN, Tago Mago, Future Days, Soon Over Babaluma - " +
+  "NEU!, Neu!, Neu! 2, Neu! 75 - " +
+  "FAUST, Faust, So Far, The Faust Tapes, Faust IV - " +
+  "CLUSTER, Cluster II - " +
+  "KRAFTWERK, Kraftwerk 2 - " +
+  "AMON DUUL II, Yeti - " +
+  "POPOL VUH, In den Garten Pharaos - " +
+  "ASH RA TEMPEL, Join Inn - " +
+  "COSMIC JOKERS, Planeten Sit In - " +
+  "HARMONIA, Musik von Harmonia.";
+
+polishingData(workingDatasKrautrock);
+
 
 let krautrock =
   "CAN, Tago Mago, Spoon, 1971 - Future Days, Spoon, 1973 - Soon Over Babaluma, Spoon, 1974 - " +

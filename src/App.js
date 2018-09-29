@@ -4,6 +4,7 @@ import YouTube from 'react-youtube';
 import './header.css';
 import './App.css';
 import data from './data';
+import dataScript from './dataScript';
 
 class App extends Component {
   constructor(props) {
@@ -114,6 +115,7 @@ class App extends Component {
   };
 
   render() {
+    console.log('dataScript', dataScript);
     const {isLoading, musicType, albumName, result, message }= this.state;
     const opts = {
       height: '390',
