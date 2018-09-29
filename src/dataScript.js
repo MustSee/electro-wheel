@@ -196,7 +196,11 @@ let downtempo =
   "MOUSE ON MARS, Vulvaland, Iaora Tahiti, Autoditacker - " +
   "OVAL, Systemisch, 94diskont, Dok - " +
   "PLAID, Not For Threes - " +
-  "POLYGON WINDOW, Surfing on Sine Waves, - ROBIN RIMBAUD, The Garden Is Full of Metal, Sub Rosa, 1997 - SCANNER, Delivery, Rawkus, 1995 - Sound For Spaces, Sub Rosa, 1998 - TERRE THAEMLITZ, Tranquilizer, Instinct, 1994 - Soil, Instinct, 1995 - Couture Cosmetique, Caipirinha, 1997 - ARTISTES DIVERS, Artificial Intelligence, Warp / Wax Trax!/TVT, 1993.";
+  "POLYGON WINDOW, Surfing on Sine Waves, - " +
+  "ROBIN RIMBAUD, The Garden Is Full of Metal - " +
+  "SCANNER, Delivery, Sound For Spaces - " +
+  "TERRE THAEMLITZ, Tranquilizer, Soil, Couture Cosmetique - " +
+  "ARTISTES DIVERS, Artificial Intelligence.";
 
 var dataByArtist = [];
 var oneArtist = "";

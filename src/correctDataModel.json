@@ -1033,7 +1033,173 @@
     },
     {
       "musicGenre": "downtempo",
-      "artists": []
+      "artists": [
+        {
+          "name": "aphex twin",
+          "albums": [
+            {
+              "title": "Selected Ambient Works 82 92"
+            },
+            {
+              "title": "Selected Ambient Works Volume II"
+            },
+            {
+              "title": "I Care Because You Do"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "autechre",
+          "albums": [
+            {
+              "title": "Incunabula"
+            },
+            {
+              "title": "Amber"
+            },
+            {
+              "title": "Tri Repetae ++"
+            },
+            {
+              "title": "Chiastic Slide"
+            },
+            {
+              "title": "Autechre"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "the black dog",
+          "albums": [
+            {
+              "title": "Spanners"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "boards of canada",
+          "albums": [
+            {
+              "title": "Music Has the Right to Children"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "microstoria",
+          "albums": [
+            {
+              "title": "init ding"
+            },
+            {
+              "title": "_snd"
+            },
+            {
+              "title": "Reprovisers"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "mouse on mars",
+          "albums": [
+            {
+              "title": "Vulvaland"
+            },
+            {
+              "title": "Iaora Tahiti"
+            },
+            {
+              "title": "Autoditacker"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "oval",
+          "albums": [
+            {
+              "title": "Systemisch"
+            },
+            {
+              "title": "94diskont"
+            },
+            {
+              "title": "Dok"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "plaid",
+          "albums": [
+            {
+              "title": "Not For Threes"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "polygon window",
+          "albums": [
+            {
+              "title": "Surfing on Sine Waves"
+            },
+            {
+              "title": ""
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "robin rimbaud",
+          "albums": [
+            {
+              "title": "The Garden Is Full of Metal"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "scanner",
+          "albums": [
+            {
+              "title": "Delivery"
+            },
+            {
+              "title": "Sound For Spaces"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "terre thaemlitz",
+          "albums": [
+            {
+              "title": "Tranquilizer"
+            },
+            {
+              "title": "Soil"
+            },
+            {
+              "title": "Couture Cosmetique"
+            }
+          ],
+          "songs": []
+        },
+        {
+          "name": "artistes divers",
+          "albums": [
+            {
+              "title": "Artificial Intelligence"
+            }
+          ],
+          "songs": []
+        }
+      ]
     }
   ]
 }

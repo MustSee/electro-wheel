@@ -3,9 +3,7 @@ import axios from 'axios';
 import YouTube from 'react-youtube';
 import './header.css';
 import './App.css';
-// import data from './data';
 import data from './correctDataModel';
-import dataScript from './dataScript';
 
 class App extends Component {
   constructor(props) {
@@ -24,7 +22,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    //this.handleClickOnButton();
+    this.handleClickOnButton();
   };
 
   randomNumber = (max) => {
@@ -41,7 +39,6 @@ class App extends Component {
     }
     this.setState({randomIndex});
     const randomMusic = data.music[randomIndex];
-    console.log('randomMusic', randomMusic);
     this.setState({musicType: randomMusic.musicGenre}, () => {
       // 2. Choose random artist from genre
       const artistsNumber = randomMusic.artists.length;
@@ -91,13 +88,10 @@ class App extends Component {
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${artistName} ${albumTitle}&key=${API_key}` ;
 
     axios.get(url).then((res) => {
-      console.log('res', res);
-      console.log(res.data.items);
       // Temporary fix : if we receive PlayList from API, do not include them in videos
       let filteredItems = res.data.items.filter((item) => {
         return !!item.id.videoId;
       });
-      console.log('filteredItems', filteredItems);
       this.setState({
         videos: filteredItems,
         isLoading: false,
@@ -120,7 +114,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(dataScript);
     const {isLoading, musicType, result, message, artistName, videos }= this.state;
     const albumTitle = this.state.album.title;
     const songTitle = this.state.song.title;
