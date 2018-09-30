@@ -1,10 +1,11 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, withTheme } from '@material-ui/core';
 
 function SimpleAppBar(props) {
-  const { title } = props;
+  const { title, theme } = props;
+  const primaryDark = theme.palette.primary.dark;
   return (
-    <AppBar position="static" color="primary">
+    <AppBar position="static" style={{backgroundColor: primaryDark}}>
       <Toolbar>
         <Typography variant="title">
           { title}
@@ -14,4 +15,4 @@ function SimpleAppBar(props) {
   )
 }
 
-export default SimpleAppBar;
+export default withTheme()(SimpleAppBar);

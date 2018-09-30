@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import YouTube from 'react-youtube';
-import AppBar from './components/SimpleAppBar'
+import AppBar from './components/SimpleAppBar';
+import MusicInfo from './components/MusicInfo';
+import Buttons from './components/Buttons';
+import Video from './components/Video';
 import data from './data/musicData';
 import './header.css';
 import './App.css';
@@ -118,8 +121,8 @@ class App extends Component {
   };
 
   render() {
-    const { artistName, buttonMessage, isLoading, musicGenre, videoIndex, videos } = this.state;
-    const albumTitle = this.state.album ? this.state.album.title : null;
+    //const { artistName, buttonMessage, isLoading, musicGenre, videoIndex, videos } = this.state;
+    //const albumTitle = this.state.album ? this.state.album.title : null;
     const songTitle = this.state.song ? this.state.song.title : null;
     const opts = {
       height: '390',
@@ -128,9 +131,17 @@ class App extends Component {
         autoplay: 1
       }
     };
+    const artistName = 'Brian Eno', musicGenre = 'Ambient', albumTitle = 'Selected ambient works 85 92';
     return (
-      <AppBar title="Electro wheel"/>
-
+      <React.Fragment>
+        <AppBar title="Electro wheel"/>
+        <MusicInfo genre={musicGenre}
+               artist={artistName}
+               title={albumTitle ? albumTitle : songTitle}
+        />
+        <Buttons />
+        <Video/>
+      </React.Fragment>
     );
   }
 }
