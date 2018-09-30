@@ -64,10 +64,6 @@ let workingDataPostPunk =
   "SUICIDE, Suicide, Red Star - " +
   "THROBBING GRISTLE, 20 Jazz Funk Greats, Mute.";
 
-// artistes divers !!
-// Ici les maisons d'éditions n'ont pas de date : Trax, Relief, Mastercuts.. Tous ici apparemment
-// faire attention s'il y a mix.toLowerCase() :)
-
 let house =
   "ARTISTES DIVERS, The House That Trax Built, Trax - " +
   "ARTISTES DIVERS, Classic Acid, Mastercuts - " +
@@ -77,7 +73,6 @@ let house =
   "MOODYMAN, Silent Introduction, Planet E - " +
   "DEEP DISH, Penetrate Deeper, Tribal UK - " +
   "DAFT PUNK, Homework, Virgin - " +
-  // Ici et en dessous, il y a le titre, le mix puis la maison d'édition
   "TORI AMOS, Professional Widow, Armand Van Helden Mix, Atlantic – " +
   "ST. GERMAIN, Alabama Blues Revisited, Todd Edwards Vocal Mix, F Communications – " +
   "187 LOCKDOWN, Gunman, East West Dance - " +
@@ -85,10 +80,6 @@ let house =
   "EZ, Presents Underground Garage Flav's, Breakdown Records - " +
   "BASIC CHANNEL, Phylyps Track 1/11, Basic Channel - " +
   "JEPHTE GUILLAME, The Prayer, Spiritual Life.";
-
-// artistes divers !!
-// Ici les maisons d'éditions n'ont pas de date : Trax, Relief, Mastercuts.. Tous ici apparemment
-// faire attention s'il y a mix.toLowerCase() :)
 
 let workingDataHouse =
   "ARTISTES DIVERS, The House That Trax Built, Trax - " +
@@ -106,10 +97,6 @@ let workingDataHouse =
   "EZ, Presents Underground Garage Flav's, Breakdown Records - " +
   "BASIC CHANNEL, Phylyps Track 1/11, Basic Channel - " +
   "JEPHTE GUILLAME, The Prayer, Spiritual Life.";
-
-// Même chose que pour la disco, les éditeurs n'ont pas de date, mais sont en dernière position
-// Tommy Boy...
-// Les chansons sont entre quotes
 
 let hipHop =
   'AFRIKA BAMBAATAA & SOUL SONIC FORCE, "Planet Rock”, Tommy Boy – ' +
@@ -202,10 +189,10 @@ let downtempo =
   "TERRE THAEMLITZ, Tranquilizer, Soil, Couture Cosmetique - " +
   "ARTISTES DIVERS, Artificial Intelligence.";
 
-var dataByArtist = [];
-var oneArtist = "";
-
-function polishingData(music) {
+function dataCleaning(music) {
+  let dataByArtist = [];
+  let oneArtist = "";
+  // 1. Separate data by artist -> J'aurais du faire un .split() ici
   for (let i=0; i < music.length; i++) {
     if (music[i] !== '-') {
       if(music[i] === '.') {
@@ -218,31 +205,28 @@ function polishingData(music) {
       oneArtist = "";
     }
   }
-  console.log('dataByArtist', dataByArtist);
-  var betterData = [];
-  var artistData = {};
+  let cleanUpData = [];
+  let artistData = {};
+  // 2. By artist, separate between artist name and other data
   dataByArtist.forEach((artist) => {
-    var arrayOfString = artist.split(',');
-    artistData.name = arrayOfString[0].trim().toLowerCase();
-    artistData.otherData = arrayOfString.slice(1);
-    console.log('otherData', artistData.otherData);
+    let arrayFromString = artist.split(',');
+    artistData.name = arrayFromString[0].trim().toLowerCase();
+    artistData.otherData = arrayFromString.slice(1);
     //let lastIndex = artistData.otherData.length - 1;
     //let publisher = artistData.otherData[lastIndex];
     let albums = [];
     let songs = [];
+    // 3. Find album or song name
     artistData.otherData.forEach((value, i) => {
-      console.log('value');
       //if (i !== lastIndex) {
         let newValue = value.trim();
         if(newValue.startsWith('"', 0)) {
-          console.log('song');
           let song = {
             title: value.trim(),
             //publisher: publisher.trim()
           };
           songs.push(song);
         } else {
-          console.log('else album', value);
           let album = {
             title: value.trim(),
             //publisher: publisher.trim(),
@@ -256,12 +240,16 @@ function polishingData(music) {
       albums,
       songs,
     };
-    betterData.push(newArtistData);
+    cleanUpData.push(newArtistData);
     artistData = {};
   });
-  console.log('better333Data', betterData);
-
+  console.log('cleanUpData', cleanUpData);
 }
 
-polishingData(downtempo);
+// On affiche les datas dans la console.
+// Pour enregistrer les datas, on clique droit dessus et : store as a global variable
+// temp 1 est créer dans la console, et pour copier : copy(JSON.stringify(temp1))
+
+dataCleaning(downtempo);
+
 

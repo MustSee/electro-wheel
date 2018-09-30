@@ -3,7 +3,7 @@ import axios from 'axios';
 import YouTube from 'react-youtube';
 import './header.css';
 import './App.css';
-import data from './correctDataModel';
+import data from './data/musicData';
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.handleClickOnButton();
+    //this.handleClickOnButton();
   };
 
   randomNumber = (max) => {
@@ -51,17 +51,18 @@ class App extends Component {
           const songsNumbers = randomMusic.artists[randomArtistIndex].songs.length;
           const randomSongIndex = this.randomNumber(songsNumbers);
           const randomSong = randomMusic.artists[randomArtistIndex].songs[randomSongIndex];
-          this.setState({song: randomSong}, () => {
+          this.setState({song: randomSong, album: {}}, () => {
             const {title}= this.state.song;
             this.handleYoutubeAPI(this.state.artistName, title);
           });
+        } else {
+          const randomAlbumIndex = this.randomNumber(albumsNumbers);
+          const randomAlbum = randomMusic.artists[randomArtistIndex].albums[randomAlbumIndex];
+          this.setState({album: randomAlbum, song: {}}, () => {
+            const {title}= this.state.album;
+            this.handleYoutubeAPI(this.state.artistName, title);
+          });
         }
-        const randomAlbumIndex = this.randomNumber(albumsNumbers);
-        const randomAlbum = randomMusic.artists[randomArtistIndex].albums[randomAlbumIndex];
-        this.setState({album: randomAlbum}, () => {
-          const {title}= this.state.album;
-          this.handleYoutubeAPI(this.state.artistName, title);
-        });
       });
     });
   };
