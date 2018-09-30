@@ -1,3 +1,8 @@
+body {
+  width: 100%;
+  margin: 0;
+}
+
 .artistName {
   margin: 30px 0 20px;
   font-size: 30px;

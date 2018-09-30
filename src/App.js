@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import YouTube from 'react-youtube';
+import AppBar from './components/SimpleAppBar'
 import data from './data/musicData';
 import './header.css';
 import './App.css';
@@ -22,7 +23,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.handleClickOnButton();
+    //this.handleClickOnButton();
   };
 
   randomNumber = (max) => {
@@ -128,34 +129,37 @@ class App extends Component {
       }
     };
     return (
-      <div className="App">
-        <div id="header">
-          <a href="#" id="musicType">{musicGenre}</a>
-          <div className="artistName">{artistName}</div>
-          <ul id="albumName">
-            <li><a href="#"><span>{albumTitle ? albumTitle : songTitle}</span></a></li>
-          </ul>
-          <div className="buttons-wrapper">
-            <div className="previousAndNext">
-              <button onClick={() => this.handleClickOnNextOrPrevious('previous')}>Previous Result</button>
-              <button onClick={() => this.handleClickOnNextOrPrevious('next')}>Next Result</button>
-              <div className="message">{buttonMessage}</div>
-            </div>
-            <a className="button" onClick={this.handleClickOnButton}>X</a>
-          </div>
-          <div className="video">
-            {isLoading ? null :
-              <YouTube
-                videoId={videos[videoIndex].id.videoId}
-                opts={opts}
-                onReady={this._onReady}
-              />
-            }
-          </div>
-        </div>
-      </div>
+      <AppBar title="Electro wheel"/>
+
     );
   }
 }
+
+let html = "      <div className=\"App\">\n" +
+  "        <div id=\"header\">\n" +
+  "          <a href=\"#\" id=\"musicType\">{musicGenre}</a>\n" +
+  "          <div className=\"artistName\">{artistName}</div>\n" +
+  "          <ul id=\"albumName\">\n" +
+  "            <li><a href=\"#\"><span>{albumTitle ? albumTitle : songTitle}</span></a></li>\n" +
+  "          </ul>\n" +
+  "          <div className=\"buttons-wrapper\">\n" +
+  "            <div className=\"previousAndNext\">\n" +
+  "              <button onClick={() => this.handleClickOnNextOrPrevious('previous')}>Previous Result</button>\n" +
+  "              <button onClick={() => this.handleClickOnNextOrPrevious('next')}>Next Result</button>\n" +
+  "              <div className=\"message\">{buttonMessage}</div>\n" +
+  "            </div>\n" +
+  "            <a className=\"button\" onClick={this.handleClickOnButton}>X</a>\n" +
+  "          </div>\n" +
+  "          <div className=\"video\">\n" +
+  "            {isLoading ? null :\n" +
+  "              <YouTube\n" +
+  "                videoId={videos[videoIndex].id.videoId}\n" +
+  "                opts={opts}\n" +
+  "                onReady={this._onReady}\n" +
+  "              />\n" +
+  "            }\n" +
+  "          </div>\n" +
+  "        </div>\n" +
+  "      </div>"
 
 export default App;

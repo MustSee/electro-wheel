@@ -1,10 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300);
 @import url(https://fonts.googleapis.com/css?family=Squada+One);
-body {
-    width: 100%;
-    margin: 0;
-    background: #eee url(https://subtlepatterns.com/patterns/extra_clean_paper.png);
-}
 #header {
     width: 90%;
     margin-left: auto;
