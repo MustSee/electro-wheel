@@ -1,11 +1,15 @@
 import React from 'react';
-import { Card, CardContent, Typography, withTheme } from '@material-ui/core';
+import { Paper, CardContent, Typography, withTheme } from '@material-ui/core';
 
 function MusicInfo(props) {
   const { genre, artist, title, theme } = props;
   const primary = theme.palette.primary.main;
   return (
-      <Card position="static" style={{ backgroundColor: primary, marginTop: '5px', padding: '35px 0' }}>
+      <Paper position="static"
+             style={{ backgroundColor: primary}}
+             className="musicInfoWrapper"
+             square={true}
+      >
         <CardContent>
           <Typography variant="display1" gutterBottom align="center">
             {genre.toUpperCase()}
@@ -17,7 +21,7 @@ function MusicInfo(props) {
             {title}
           </Typography>
         </CardContent>
-      </Card>
+      </Paper>
   )
 }
 

@@ -113,18 +113,20 @@ class App extends Component {
 
     return (
       <React.Fragment>
-        <AppBar title="Electro Wheel"/>
-        <MusicInfo genre={musicGenre}
-               artist={artistName}
-               title={albumTitle ? albumTitle : songTitle}
-        />
-        <Buttons handleVideoIndex={(status) => this.setVideoIndex(status)}
-                 handleMainSearch={this.handleMainClick}
-                 buttonMessage={buttonMessage}
-        />
-        {
-          isLoading ? null : <Video videoId={videos[videoIndex].id.videoId}/>
-        }
+        <div className="globalContent">
+          <AppBar title="Electro Wheel"/>
+          <MusicInfo genre={musicGenre}
+                     artist={artistName}
+                     title={albumTitle ? albumTitle : songTitle}
+          />
+          <Buttons handleVideoIndex={(status) => this.setVideoIndex(status)}
+                   handleMainSearch={this.handleMainClick}
+                   buttonMessage={buttonMessage}
+          />
+          {
+            isLoading ? null : <Video videoId={videos[videoIndex].id.videoId}/>
+          }
+        </div>
       </React.Fragment>
     );
   }

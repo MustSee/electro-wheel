@@ -1,5 +1,52 @@
 body {
-  width: 100%;
   margin: 0;
+  padding: 0;
+  user-select : none;
   background-color: #f5f5f5;
+}
+
+/*
+AppBar = 56px jusqu'à 480px width, puis 64px après
+MusicInfo = 232px avec le padding compris
+Buttons = 76px
+Video = l'espace restant !
+ */
+
+.globalContent {
+  height: 100vh;
+  display: flex; /* A permis de passer la AppBar au-dessus de la card ! Enfin ! */
+  flex-direction: column;
+}
+
+/*****************
+**  MUSIC INFO  **
+*****************/
+
+.musicInfoWrapper {
+  height: 35vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/*****************
+***   BUTTONS  ***
+*****************/
+
+.buttonWrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+
+/*****************
+****   VIDEO   ***
+*****************/
+
+.videoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: Calc(100vh - 56px - 35vh - 76px);
 }
