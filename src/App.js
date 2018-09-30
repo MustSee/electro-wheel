@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { CircularProgress } from '@material-ui/core';
 import AppBar from './components/SimpleAppBar';
 import MusicInfo from './components/MusicInfo';
 import Buttons from './components/Buttons';
@@ -123,9 +124,13 @@ class App extends Component {
                    handleMainSearch={this.handleMainClick}
                    buttonMessage={buttonMessage}
           />
-          {
-            isLoading ? null : <Video videoId={videos[videoIndex].id.videoId}/>
-          }
+          <div className="videoWrapper">
+            {
+              isLoading ?
+                <CircularProgress color="secondary" thickness={3} size={100}/> :
+                <Video videoId={videos[videoIndex].id.videoId}/>
+            }
+          </div>
         </div>
       </React.Fragment>
     );

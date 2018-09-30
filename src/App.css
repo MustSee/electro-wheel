@@ -7,10 +7,10 @@ body {
 
 /*
 AppBar = 56px jusqu'à 480px width, puis 64px après
-MusicInfo = 232px avec le padding compris
+MusicInfo = 35vh
 Buttons = 76px
 Video = l'espace restant !
- */
+*/
 
 .globalContent {
   height: 100vh;
@@ -27,6 +27,10 @@ Video = l'espace restant !
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }
 
 /*****************
@@ -49,4 +53,5 @@ Video = l'espace restant !
   justify-content: center;
   align-items: center;
   height: Calc(100vh - 56px - 35vh - 76px);
+  background-color: #fff;
 }

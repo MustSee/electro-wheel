@@ -19,7 +19,7 @@ class Video extends Component {
       }
     };
     return (
-      <Paper className="videoWrapper" square={true}>
+      <Paper square={true}>
         <YouTube
           videoId={videoId}
           opts={opts}

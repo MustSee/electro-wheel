@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import { Button, Icon, Paper } from '@material-ui/core';
 
-const prevButton = {
-  marginRight: '10px'
+const styles = {
+  bgColor: {
+    backgroundColor: '#f5f5f5'
+  },
+  prevButton: {
+    marginRight: '10px',
+    backgroundColor: '#fff',
+  },
+  nextButton: {
+    backgroundColor: '#fff',
+  }
 };
 
 class Buttons extends Component {
@@ -16,14 +25,15 @@ class Buttons extends Component {
 
   render() {
     return (
-      <Paper className="buttonWrapper" elevation={2} square={true}>
+      <Paper className="buttonWrapper" style={styles.bgColor} elevation={2} square={true}>
         <div>
           <Button variant="outlined"
-                  style={prevButton}
+                  style={styles.prevButton}
                   onClick={() => this.handleClickOnNextOrPrevious('previous')}>
             Previous
           </Button>
           <Button variant="outlined"
+                  style={styles.nextButton}
                   onClick={() => this.handleClickOnNextOrPrevious('next')}>
             Next
           </Button>

@@ -14,7 +14,7 @@ function MusicInfo(props) {
           <Typography variant="display1" gutterBottom align="center">
             {genre.toUpperCase()}
           </Typography>
-          <Typography variant="headline" gutterBottom align="center" style={{textTransform: 'capitalize'}}>
+          <Typography variant="headline" gutterBottom align="center" className="capitalize">
             {artist}
           </Typography>
           <Typography variant="subheading" gutterBottom align="center">
