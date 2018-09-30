@@ -9,15 +9,15 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      album: {},
+      artistName: '',
+      buttonMessage: '',
       isLoading: true,
       musicGenre: '',
-      artistName: '',
-      album: {},
+      musicGenreIndex: null,
       song: {},
-      buttonMessage: '',
-      randomIndex: null,
+      videoIndex: null,
       videos: [],
-      videoIndex: null
     }
   }
 
@@ -33,12 +33,12 @@ class App extends Component {
     this.setState({isLoading: true, buttonMessage: ''});
     // 1. from data.length, choose one music type randomly
     const length = data.music.length;
-    let randomIndex = this.randomNumber(length);
-    while (randomIndex === this.state.randomIndex) {
-       randomIndex = this.randomNumber(length);
+    let randomMusicGenreIndex = this.randomNumber(length);
+    while (randomMusicGenreIndex === this.state.musicGenreIndex) {
+      randomMusicGenreIndex = this.randomNumber(length);
     }
-    this.setState({randomIndex});
-    const randomMusic = data.music[randomIndex];
+    this.setState({musicGenreIndex: randomMusicGenreIndex});
+    const randomMusic = data.music[randomMusicGenreIndex];
     this.setState({musicGenre: randomMusic.musicGenre}, () => {
       // 2. Choose random artist from genre
       const artistsNumber = randomMusic.artists.length;
@@ -67,26 +67,27 @@ class App extends Component {
     });
   };
 
-  handleClickOnNextOrPreviousResult = (status) => {
+  handleClickOnNextOrPrevious = (status) => {
+    const {videoIndex, videos} = this.state;
     if (status === 'next') {
-      if (this.state.videoIndex < this.state.videos.length - 1) {
-        this.setState({videoIndex: this.state.videoIndex + 1, buttonMessage: ''})
-      } else if (this.state.videoIndex === this.state.videos.length - 1) {
+      if (videoIndex < videos.length - 1) {
+        this.setState({videoIndex: videoIndex + 1, buttonMessage: ''})
+      } else if (videoIndex === videos.length - 1) {
         this.setState({buttonMessage: 'Cannot go any further'})
       }
     } else if (status === 'previous') {
-      if (this.state.videoIndex > 0) {
-        this.setState({videoIndex: this.state.videoIndex - 1, buttonMessage: ''})
-      } else if (this.state.videoIndex === 0) {
+      if (videoIndex > 0) {
+        this.setState({videoIndex: videoIndex - 1, buttonMessage: ''})
+      } else if (videoIndex === 0) {
         this.setState({buttonMessage: 'Cannot go any further'})
       }
     }
   };
 
-  handleYoutubeAPI = (artistName, albumTitle) => {
-    // Checker if artistName contains 'artistes divers'
+  handleYoutubeAPI = (artistName, pieceTitle) => {
+    let name = artistName === 'artistes divers' ? '' : artistName;
     const API_key = "AIzaSyB5Gb2TJc5CLw0GRFDHOJXoF-HlF0bCP-g";
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${artistName} ${albumTitle}&key=${API_key}` ;
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${pieceTitle} ${name}&key=${API_key}` ;
 
     axios.get(url).then((res) => {
       // Temporary fix : if we receive PlayList from API, do not include them in videos
@@ -115,7 +116,7 @@ class App extends Component {
   };
 
   render() {
-    const {isLoading, musicGenre, videoIndex, buttonMessage, artistName, videos }= this.state;
+    const {artistName, buttonMessage, isLoading, musicGenre, videoIndex, videos }= this.state;
     const albumTitle = this.state.album ? this.state.album.title : null;
     const songTitle = this.state.song ? this.state.song.title : null;
     const opts = {
@@ -137,8 +138,8 @@ class App extends Component {
             {videoIndex === null ? null :
               <React.Fragment>
                 <div className="previousAndNext">
-                  <button onClick={() => this.handleClickOnNextOrPreviousResult('previous')}>Previous Result</button>
-                  <button onClick={() => this.handleClickOnNextOrPreviousResult('next')}>Next Result</button>
+                  <button onClick={() => this.handleClickOnNextOrPrevious('previous')}>Previous Result</button>
+                  <button onClick={() => this.handleClickOnNextOrPrevious('next')}>Next Result</button>
                   <div className="message">{buttonMessage}</div>
                 </div>
               </React.Fragment>
@@ -148,7 +149,7 @@ class App extends Component {
           <div className="video">
             {isLoading ? null :
               <YouTube
-                videoId={videos[this.state.videoIndex].id.videoId}
+                videoId={videos[videoIndex].id.videoId}
                 opts={opts}
                 onReady={this._onReady}
               />
