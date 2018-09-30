@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import YouTube from 'react-youtube';
 import AppBar from './components/SimpleAppBar';
 import MusicInfo from './components/MusicInfo';
 import Buttons from './components/Buttons';
 import Video from './components/Video';
 import data from './data/musicData';
-import './header.css';
 import './App.css';
 
 class App extends Component {
@@ -26,14 +24,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    //this.handleClickOnButton();
+    this.handleMainClick();
   };
 
   randomNumber = (max) => {
     return Math.floor(Math.random() * max);
   };
 
-  handleClickOnButton = () => {
+  handleMainClick = () => {
+    console.log('MAIN CLICK');
     this.setState({ isLoading: true, buttonMessage: '' });
     // 1. from data.length, choose one music type randomly
     const length = data.music.length;
@@ -71,23 +70,6 @@ class App extends Component {
     });
   };
 
-  handleClickOnNextOrPrevious = (status) => {
-    const { videoIndex, videos } = this.state;
-    if (status === 'next') {
-      if (videoIndex < videos.length - 1) {
-        this.setState({ videoIndex: videoIndex + 1, buttonMessage: '' })
-      } else if (videoIndex === videos.length - 1) {
-        this.setState({ buttonMessage: 'Cannot go any further' })
-      }
-    } else if (status === 'previous') {
-      if (videoIndex > 0) {
-        this.setState({ videoIndex: videoIndex - 1, buttonMessage: '' })
-      } else if (videoIndex === 0) {
-        this.setState({ buttonMessage: 'Cannot go any further' })
-      }
-    }
-  };
-
   handleYoutubeAPI = (artistName, pieceTitle) => {
     let name = artistName === 'artistes divers' ? '' : artistName;
     const API_key = "AIzaSyB5Gb2TJc5CLw0GRFDHOJXoF-HlF0bCP-g";
@@ -104,73 +86,48 @@ class App extends Component {
         videoIndex: 0
       });
     }).catch((error) => console.log('error', error));
+  };
 
-    {/*
-    this.setState({
-      isLoading: false,
-      videoIndex: 0
-    });
-    */
+  setVideoIndex = (status) => {
+    console.log('setVideoIndex MAIN');
+    const { videoIndex, videos } = this.state;
+    if (status === 'next') {
+      if (videoIndex < videos.length - 1) {
+        this.setState({ videoIndex: videoIndex + 1, buttonMessage: '' })
+      } else if (videoIndex === videos.length - 1) {
+        this.setState({ buttonMessage: 'Cannot go any further' })
+      }
+    } else if (status === 'previous') {
+      if (videoIndex > 0) {
+        this.setState({ videoIndex: videoIndex - 1, buttonMessage: '' })
+      } else if (videoIndex === 0) {
+        this.setState({ buttonMessage: 'Cannot go any further' })
+      }
     }
   };
 
-  _onReady = (event) => {
-    console.log('_onReady');
-    // access to player in all event handlers via event.target
-    event.target.pauseVideo();
-  };
-
   render() {
-    //const { artistName, buttonMessage, isLoading, musicGenre, videoIndex, videos } = this.state;
-    //const albumTitle = this.state.album ? this.state.album.title : null;
+    const { artistName, buttonMessage, isLoading, musicGenre, videoIndex, videos } = this.state;
+    const albumTitle = this.state.album ? this.state.album.title : null;
     const songTitle = this.state.song ? this.state.song.title : null;
-    const opts = {
-      height: '390',
-      width: '640',
-      playerVars: { // https://developers.google.com/youtube/player_parameters
-        autoplay: 1
-      }
-    };
-    const artistName = 'Brian Eno', musicGenre = 'Ambient', albumTitle = 'Selected ambient works 85 92';
+
     return (
       <React.Fragment>
-        <AppBar title="Electro wheel"/>
+        <AppBar title="Electro Wheel"/>
         <MusicInfo genre={musicGenre}
                artist={artistName}
                title={albumTitle ? albumTitle : songTitle}
         />
-        <Buttons />
-        <Video/>
+        <Buttons handleVideoIndex={(status) => this.setVideoIndex(status)}
+                 handleMainSearch={this.handleMainClick}
+                 buttonMessage={buttonMessage}
+        />
+        {
+          isLoading ? null : <Video videoId={videos[videoIndex].id.videoId}/>
+        }
       </React.Fragment>
     );
   }
 }
-
-let html = "      <div className=\"App\">\n" +
-  "        <div id=\"header\">\n" +
-  "          <a href=\"#\" id=\"musicType\">{musicGenre}</a>\n" +
-  "          <div className=\"artistName\">{artistName}</div>\n" +
-  "          <ul id=\"albumName\">\n" +
-  "            <li><a href=\"#\"><span>{albumTitle ? albumTitle : songTitle}</span></a></li>\n" +
-  "          </ul>\n" +
-  "          <div className=\"buttons-wrapper\">\n" +
-  "            <div className=\"previousAndNext\">\n" +
-  "              <button onClick={() => this.handleClickOnNextOrPrevious('previous')}>Previous Result</button>\n" +
-  "              <button onClick={() => this.handleClickOnNextOrPrevious('next')}>Next Result</button>\n" +
-  "              <div className=\"message\">{buttonMessage}</div>\n" +
-  "            </div>\n" +
-  "            <a className=\"button\" onClick={this.handleClickOnButton}>X</a>\n" +
-  "          </div>\n" +
-  "          <div className=\"video\">\n" +
-  "            {isLoading ? null :\n" +
-  "              <YouTube\n" +
-  "                videoId={videos[videoIndex].id.videoId}\n" +
-  "                opts={opts}\n" +
-  "                onReady={this._onReady}\n" +
-  "              />\n" +
-  "            }\n" +
-  "          </div>\n" +
-  "        </div>\n" +
-  "      </div>"
 
 export default App;
