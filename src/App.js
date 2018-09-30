@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import YouTube from 'react-youtube';
+import data from './data/musicData';
 import './header.css';
 import './App.css';
-import data from './data/musicData';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true,
-      musicType: '',
+      musicGenre: '',
       artistName: '',
       album: {},
       song: {},
-      message: '',
+      buttonMessage: '',
       randomIndex: null,
       videos: [],
-      result: null
+      videoIndex: null
     }
   }
 
@@ -30,7 +30,7 @@ class App extends Component {
   };
 
   handleClickOnButton = () => {
-    this.setState({isLoading: true, message: ''});
+    this.setState({isLoading: true, buttonMessage: ''});
     // 1. from data.length, choose one music type randomly
     const length = data.music.length;
     let randomIndex = this.randomNumber(length);
@@ -39,7 +39,7 @@ class App extends Component {
     }
     this.setState({randomIndex});
     const randomMusic = data.music[randomIndex];
-    this.setState({musicType: randomMusic.musicGenre}, () => {
+    this.setState({musicGenre: randomMusic.musicGenre}, () => {
       // 2. Choose random artist from genre
       const artistsNumber = randomMusic.artists.length;
       const randomArtistIndex = this.randomNumber(artistsNumber);
@@ -69,16 +69,16 @@ class App extends Component {
 
   handleClickOnNextOrPreviousResult = (status) => {
     if (status === 'next') {
-      if (this.state.result < this.state.videos.length - 1) {
-        this.setState({result: this.state.result + 1, message: ''})
-      } else if (this.state.result === this.state.videos.length - 1) {
-        this.setState({message: 'Cannot go any further'})
+      if (this.state.videoIndex < this.state.videos.length - 1) {
+        this.setState({videoIndex: this.state.videoIndex + 1, buttonMessage: ''})
+      } else if (this.state.videoIndex === this.state.videos.length - 1) {
+        this.setState({buttonMessage: 'Cannot go any further'})
       }
     } else if (status === 'previous') {
-      if (this.state.result > 0) {
-        this.setState({result: this.state.result - 1, message: ''})
-      } else if (this.state.result === 0) {
-        this.setState({message: 'Cannot go any further'})
+      if (this.state.videoIndex > 0) {
+        this.setState({videoIndex: this.state.videoIndex - 1, buttonMessage: ''})
+      } else if (this.state.videoIndex === 0) {
+        this.setState({buttonMessage: 'Cannot go any further'})
       }
     }
   };
@@ -96,14 +96,14 @@ class App extends Component {
       this.setState({
         videos: filteredItems,
         isLoading: false,
-        result: 0
+        videoIndex: 0
       });
     }).catch((error) => console.log('error', error));
 
     {/*
     this.setState({
       isLoading: false,
-      result: 0
+      videoIndex: 0
     });
     */}
   };
@@ -115,7 +115,7 @@ class App extends Component {
   };
 
   render() {
-    const {isLoading, musicType, result, message, artistName, videos }= this.state;
+    const {isLoading, musicGenre, videoIndex, buttonMessage, artistName, videos }= this.state;
     const albumTitle = this.state.album ? this.state.album.title : null;
     const songTitle = this.state.song ? this.state.song.title : null;
     const opts = {
@@ -128,18 +128,18 @@ class App extends Component {
     return (
       <div className="App">
         <div id="header">
-          <a href="#" id="musicType">{musicType}</a>
+          <a href="#" id="musicType">{musicGenre}</a>
           <div className="artistName">{artistName}</div>
           <ul id="albumName">
             <li><a href="#"><span>{albumTitle ? albumTitle : songTitle}</span></a></li>
           </ul>
           <div className="buttons-wrapper">
-            {result === null ? null :
+            {videoIndex === null ? null :
               <React.Fragment>
                 <div className="previousAndNext">
                   <button onClick={() => this.handleClickOnNextOrPreviousResult('previous')}>Previous Result</button>
                   <button onClick={() => this.handleClickOnNextOrPreviousResult('next')}>Next Result</button>
-                  <div className="message">{message}</div>
+                  <div className="message">{buttonMessage}</div>
                 </div>
               </React.Fragment>
             }
@@ -148,7 +148,7 @@ class App extends Component {
           <div className="video">
             {isLoading ? null :
               <YouTube
-                videoId={videos[this.state.result].id.videoId}
+                videoId={videos[this.state.videoIndex].id.videoId}
                 opts={opts}
                 onReady={this._onReady}
               />
