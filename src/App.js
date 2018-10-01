@@ -72,8 +72,8 @@ class App extends Component {
 
   handleYoutubeAPI = (artistName, pieceTitle) => {
     let name = artistName === 'artistes divers' ? '' : artistName;
-    const API_key = "AIzaSyB5Gb2TJc5CLw0GRFDHOJXoF-HlF0bCP-g";
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${pieceTitle} ${name}&key=${API_key}`;
+    const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${pieceTitle} ${name}&key=${YOUTUBE_API_KEY}`;
 
     axios.get(url).then((res) => {
       let filteredItems = res.data.items.filter((item) => {
@@ -103,7 +103,7 @@ class App extends Component {
       //     'maxResults': '25',
       //     'part': 'snippet,contentDetails',
       //     'playlistId': playListId,
-      //     'key': API_key
+      //     'key': YOUTUBE_API_KEY
       //   }
       // }).then((res) => {
       //   console.log('res PLAYLISTITEMS', res)
