@@ -33,7 +33,6 @@ class App extends Component {
   };
 
   handleMainClick = () => {
-    console.log('MAIN CLICK');
     this.setState({ isLoading: true, buttonMessage: '' });
     // 1. from data.length, choose one music type randomly
     const length = data.music.length;
@@ -90,7 +89,6 @@ class App extends Component {
   };
 
   setVideoIndex = (status) => {
-    console.log('setVideoIndex MAIN');
     const { videoIndex, videos } = this.state;
     if (status === 'next') {
       if (videoIndex < videos.length - 1) {
