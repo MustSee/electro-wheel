@@ -76,10 +76,38 @@ class App extends Component {
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${pieceTitle} ${name}&key=${API_key}`;
 
     axios.get(url).then((res) => {
-      // Temporary fix : if we receive PlayList from API, do not include them in videos
       let filteredItems = res.data.items.filter((item) => {
         return !!item.id.videoId;
       });
+      // TODO: next step, include playLists into response and UI
+      // let videos = [];
+      // let playlists = [];
+      // res.data.items.forEach((item) => {
+      //   if (item.id.videoId) {
+      //     return videos.push(item);
+      //   }
+      //   return playlists.push(item);
+      // });
+      // let playLists = res.data.items.filter((item) => {
+      //   return item.id.playlistId;
+      // });
+      // let playListId = 'PLEj-9oxX8ZGfapD2xIuKYOkN4kY1UwFVk';
+      // console.log('RES ALL FOR TIME', res);
+      //
+      // const playListItemsUrl =
+      //   `https://www.googleapis.com/youtube/v3/playlistItems/search?part=snippet&playlistId=${playListId}&pageToken=1&=key=${API_key}`;
+      //
+      //
+      // axios.get('https://www.googleapis.com/youtube/v3/playlistItems', {
+      //   params: {
+      //     'maxResults': '25',
+      //     'part': 'snippet,contentDetails',
+      //     'playlistId': playListId,
+      //     'key': API_key
+      //   }
+      // }).then((res) => {
+      //   console.log('res PLAYLISTITEMS', res)
+      // });
       this.setState({
         videos: filteredItems,
         isLoading: false,
