@@ -183,7 +183,7 @@ let downtempo =
   "MOUSE ON MARS, Vulvaland, Iaora Tahiti, Autoditacker - " +
   "OVAL, Systemisch, 94diskont, Dok - " +
   "PLAID, Not For Threes - " +
-  "POLYGON WINDOW, Surfing on Sine Waves, - " +
+  "POLYGON WINDOW, Surfing on Sine Waves - " +
   "ROBIN RIMBAUD, The Garden Is Full of Metal - " +
   "SCANNER, Delivery, Sound For Spaces - " +
   "TERRE THAEMLITZ, Tranquilizer, Soil, Couture Cosmetique - " +
