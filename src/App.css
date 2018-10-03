@@ -53,5 +53,5 @@ Video = l'espace restant !
   justify-content: center;
   align-items: center;
   height: Calc(100vh - 56px - 40vh); /* Mettre une height minimal */
-  background-color: #fff;
+  background-color: #f5f5f5;
 }
