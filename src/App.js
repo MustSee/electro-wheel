@@ -3,7 +3,7 @@ import axios from 'axios';
 import { CircularProgress } from '@material-ui/core';
 import AppBar from './components/SimpleAppBar';
 import MusicInfo from './components/MusicInfo';
-import Buttons from './components/Buttons';
+// import Buttons from './components/Buttons';
 import Video from './components/Video';
 import data from './data/musicData';
 import './App.css';
@@ -134,9 +134,15 @@ class App extends Component {
   };
 
   render() {
-    const { artistName, buttonMessage, isLoading, musicGenre, videoIndex, videos } = this.state;
-    const albumTitle = this.state.album ? this.state.album.title : null;
-    const songTitle = this.state.song ? this.state.song.title : null;
+    const { artistName, isLoading, musicGenre, videoIndex, videos } = this.state;
+    const album = this.state.album ? {
+      type: 'album',
+      title: this.state.album.title
+    } : null;
+    const song = this.state.song ? {
+      type: 'song',
+      title: this.state.song.title
+    } : null;
 
     return (
       <React.Fragment>
@@ -144,12 +150,13 @@ class App extends Component {
           <AppBar title="Electro Wheel"/>
           <MusicInfo genre={musicGenre}
                      artist={artistName}
-                     title={albumTitle ? albumTitle : songTitle}
+                     piece={album.title ? album : song}
+                     handleMainSearch={this.handleMainClick}
           />
-          <Buttons handleVideoIndex={(status) => this.setVideoIndex(status)}
-                   handleMainSearch={this.handleMainClick}
-                   buttonMessage={buttonMessage}
-          />
+          {/*<Buttons handleVideoIndex={(status) => this.setVideoIndex(status)}*/}
+                   {/*handleMainSearch={this.handleMainClick}*/}
+                   {/*buttonMessage={buttonMessage}*/}
+          {/*/>*/}
           <div className="videoWrapper">
             {
               isLoading ?

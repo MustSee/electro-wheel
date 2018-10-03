@@ -23,7 +23,7 @@ Video = l'espace restant !
 *****************/
 
 .musicInfoWrapper {
-  height: 35vh;
+  height: 40vh; /* Mettre une height minimal */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -52,6 +52,6 @@ Video = l'espace restant !
   display: flex;
   justify-content: center;
   align-items: center;
-  height: Calc(100vh - 56px - 35vh - 76px);
+  height: Calc(100vh - 56px - 40vh); /* Mettre une height minimal */
   background-color: #fff;
 }

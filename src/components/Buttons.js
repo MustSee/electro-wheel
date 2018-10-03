@@ -38,9 +38,6 @@ class Buttons extends Component {
             Next
           </Button>
         </div>
-        <Button variant="fab" color="secondary" onClick={this.handleClickOnSearchButton}>
-          <Icon>search</Icon>
-        </Button>
       </Paper>
     )
   }
