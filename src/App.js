@@ -56,64 +56,105 @@ class App extends Component {
           const randomSong = randomMusic.artists[randomArtistIndex].songs[randomSongIndex];
           this.setState({ song: randomSong, album: {} }, () => {
             const { title } = this.state.song;
-            this.handleYoutubeAPI(this.state.artistName, title);
+            this.prepareURL(this.state.artistName, title);
           });
         } else {
           const randomAlbumIndex = this.randomNumber(albumsNumbers);
           const randomAlbum = randomMusic.artists[randomArtistIndex].albums[randomAlbumIndex];
           this.setState({ album: randomAlbum, song: {} }, () => {
             const { title } = this.state.album;
-            this.handleYoutubeAPI(this.state.artistName, title);
+            this.prepareURL(this.state.artistName, title);
           });
         }
       });
     });
   };
 
-  handleYoutubeAPI = (artistName, pieceTitle) => {
+  prepareURL = (artistName, pieceTitle) => {
+    // Rajouter full album si c'est un album,
+    // Le style de musique si le nom de l'artiste est artiste divers, etc...
     let name = artistName === 'artistes divers' ? '' : artistName;
     const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${pieceTitle} ${name}&key=${YOUTUBE_API_KEY}`;
+    const URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${pieceTitle} ${name}&key=${YOUTUBE_API_KEY}`;
+    this.handleYoutubeAPI(URL)
+  };
 
-    axios.get(url).then((res) => {
-      let filteredItems = res.data.items.filter((item) => {
-        return !!item.id.videoId;
+  wait = (result) => {
+    return new Promise((resolve, reject) => {
+      let playlistId = result.id.playlistId;
+      const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+      axios.get('https://www.googleapis.com/youtube/v3/playlistItems', {
+        params: {
+          'maxResults': '25',
+          'part': 'snippet,contentDetails',
+          'playlistId': playlistId,
+          'key': YOUTUBE_API_KEY
+        }
+      }).then((res) => {
+        console.log('res PLAYLISTITEMS', res);
+        let items = [];
+        const playlistItems = res.data.items;
+        const length = playlistItems.length;
+        playlistItems.forEach((item, j) => {
+          items[j] = {
+            type: 'playlistItem',
+            position: item.snippet.position,
+            videoId: item.contentDetails.videoId,
+            title: item.snippet.title
+          }
+        });
+        console.log('3333', items); // last to log
+        let videos = {
+          type: 'playlist',
+          length,
+          playlistId,
+          videos: items
+        };
+        resolve(videos)
       });
-      // TODO: next step, include playLists into response and UI
-      // let videos = [];
-      // let playlists = [];
-      // res.data.items.forEach((item) => {
-      //   if (item.id.videoId) {
-      //     return videos.push(item);
-      //   }
-      //   return playlists.push(item);
-      // });
-      // let playLists = res.data.items.filter((item) => {
-      //   return item.id.playlistId;
-      // });
-      // let playListId = 'PLEj-9oxX8ZGfapD2xIuKYOkN4kY1UwFVk';
-      // console.log('RES ALL FOR TIME', res);
-      //
-      // const playListItemsUrl =
-      //   `https://www.googleapis.com/youtube/v3/playlistItems/search?part=snippet&playlistId=${playListId}&pageToken=1&=key=${API_key}`;
-      //
-      //
-      // axios.get('https://www.googleapis.com/youtube/v3/playlistItems', {
-      //   params: {
-      //     'maxResults': '25',
-      //     'part': 'snippet,contentDetails',
-      //     'playlistId': playListId,
-      //     'key': YOUTUBE_API_KEY
-      //   }
-      // }).then((res) => {
-      //   console.log('res PLAYLISTITEMS', res)
-      // });
-      this.setState({
-        videos: filteredItems,
-        isLoading: false,
-        videoIndex: 0
+    });
+  };
+
+  handleYoutubeAPI = (URL) => {
+    return new Promise((resolve, reject) => {
+      console.log('URL', URL);
+      let videos = [];
+      axios.get(URL).then((res) => {
+        console.log('res', res);
+        const results = res.data.items;
+        results.forEach((result, i) => {
+            if (result.id.kind === 'youtube#video') {
+              console.log('i video', i);
+              videos[i] = {
+                type: 'video',
+                videos: [
+                  {
+                    videoId: result.id.videoId,
+                    title: result.snippet.title
+                  }
+                ]
+              };
+            } else if (result.id.kind === 'youtube#playlist') {
+              console.log('i playlist', i);
+              this.wait(result).then((res) => {
+                console.log('WAIIIT', res);
+                videos[i] = res;
+                this.setState({videos});
+                console.log('999 FINAL', videos);
+              });
+            }
+          }
+        );
+        console.log('OUTSIDE FOREACH');
+
+        // this.setState({
+        //   videos: firstResult,
+        //   isLoading: false,
+        //   videoIndex: 0 // Voir si c'est la bonne place pour le resetter à 0
+        // });
+
       });
-    }).catch((error) => console.log('error', error));
+    });
   };
 
   setVideoIndex = (status) => {
@@ -147,21 +188,21 @@ class App extends Component {
     return (
       <React.Fragment>
         <div className="globalContent">
-          <AppBar title="Electro Wheel"/>
+          <AppBar title="Electro Wheel" />
           <MusicInfo genre={musicGenre}
                      artist={artistName}
                      piece={album.title ? album : song}
                      handleMainSearch={this.handleMainClick}
           />
           {/*<Buttons handleVideoIndex={(status) => this.setVideoIndex(status)}*/}
-                   {/*handleMainSearch={this.handleMainClick}*/}
-                   {/*buttonMessage={buttonMessage}*/}
+          {/*handleMainSearch={this.handleMainClick}*/}
+          {/*buttonMessage={buttonMessage}*/}
           {/*/>*/}
           <div className="videoWrapper">
             {
               isLoading ?
-                <CircularProgress color="secondary" thickness={3} size={100}/> :
-                <Video videoId={videos[videoIndex].id.videoId}/>
+                <CircularProgress color="secondary" thickness={3} size={100} /> :
+                <Video videoId={videos[videoIndex].id.videoId} />
             }
           </div>
         </div>
