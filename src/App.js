@@ -117,42 +117,54 @@ class App extends Component {
     });
   };
 
+  firstWait = (results) => {
+    return new Promise((resolve) => {
+      let videos = [];
+      let types = [];
+      results.forEach((result, i) => {
+        if (result.id.kind === 'youtube#video') {
+          types.push('video');
+          console.log('video');
+          videos[i] = {
+            type: 'video',
+            videos: [
+              {
+                videoId: result.id.videoId,
+                title: result.snippet.title
+              }
+            ]
+          };
+          if (types.length === results.length) {
+            console.log('types.length === results.length', types.length, results.length);
+            resolve(videos);
+          }
+        } else if (result.id.kind === 'youtube#playlist') {
+          console.log('playlist');
+          this.wait(result).then((res) => {
+            console.log('last call before departure',res);
+            videos[i] = res;
+            resolve(videos);
+            //   videoIndex: 0 // Voir si c'est la bonne place pour le resetter à 0
+          });
+        }
+      });
+    });
+  };
+
   handleYoutubeAPI = (URL) => {
     console.log('handleYoutubeAPI');
-    let videos = [];
     axios.get(URL).then((res) => {
       const results = res.data.items;
-      results.forEach((result, i) => {
-          if (result.id.kind === 'youtube#video') {
-            console.log('video');
-            videos[i] = {
-              type: 'video',
-              videos: [
-                {
-                  videoId: result.id.videoId,
-                  title: result.snippet.title
-                }
-              ]
-            };
-          } else if (result.id.kind === 'youtube#playlist') {
-            console.log('playlist');
-            this.wait(result).then((res) => {
-              console.log('last call before departure',res);
-              videos[i] = res;
-              this.setState({ videos, isLoading: false });
-              console.log('this.state', this.state);
-              //   videoIndex: 0 // Voir si c'est la bonne place pour le resetter à 0
-            });
-          }
-        }
-      );
+      this.firstWait(results).then((res) => {
+        this.setState({ videos: res, isLoading: false });
+        console.log('this.state', this.state);
+      });
     });
   };
 
   renderVideo = () => {
     const { videoIndex, videos } = this.state;
-    console.log('video',videos[videoIndex].videos[0].videoId);
-    if (videos[videoIndex].type === 'playlist') {
+    if (videos[videoIndex].type === 'video') {
       return (
         <Video videoId={videos[videoIndex].videos[0].videoId} />
       )
