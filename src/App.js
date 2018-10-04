@@ -25,6 +25,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log('componentDidMount');
     this.handleMainClick();
   };
 
@@ -71,6 +72,7 @@ class App extends Component {
   };
 
   prepareURL = (artistName, pieceTitle) => {
+    console.log('prepareURL');
     // Rajouter full album si c'est un album,
     // Le style de musique si le nom de l'artiste est artiste divers, etc...
     let name = artistName === 'artistes divers' ? '' : artistName;
@@ -80,7 +82,8 @@ class App extends Component {
   };
 
   wait = (result) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
+      console.log('inside wait');
       let playlistId = result.id.playlistId;
       const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
       axios.get('https://www.googleapis.com/youtube/v3/playlistItems', {
@@ -91,7 +94,7 @@ class App extends Component {
           'key': YOUTUBE_API_KEY
         }
       }).then((res) => {
-        console.log('res PLAYLISTITEMS', res);
+        console.log('inside wait.then');
         let items = [];
         const playlistItems = res.data.items;
         const length = playlistItems.length;
@@ -103,7 +106,6 @@ class App extends Component {
             title: item.snippet.title
           }
         });
-        console.log('3333', items); // last to log
         let videos = {
           type: 'playlist',
           length,
@@ -116,45 +118,50 @@ class App extends Component {
   };
 
   handleYoutubeAPI = (URL) => {
-    return new Promise((resolve, reject) => {
-      console.log('URL', URL);
-      let videos = [];
-      axios.get(URL).then((res) => {
-        console.log('res', res);
-        const results = res.data.items;
-        results.forEach((result, i) => {
-            if (result.id.kind === 'youtube#video') {
-              console.log('i video', i);
-              videos[i] = {
-                type: 'video',
-                videos: [
-                  {
-                    videoId: result.id.videoId,
-                    title: result.snippet.title
-                  }
-                ]
-              };
-            } else if (result.id.kind === 'youtube#playlist') {
-              console.log('i playlist', i);
-              this.wait(result).then((res) => {
-                console.log('WAIIIT', res);
-                videos[i] = res;
-                this.setState({videos});
-                console.log('999 FINAL', videos);
-              });
-            }
+    console.log('handleYoutubeAPI');
+    let videos = [];
+    axios.get(URL).then((res) => {
+      const results = res.data.items;
+      results.forEach((result, i) => {
+          if (result.id.kind === 'youtube#video') {
+            console.log('video');
+            videos[i] = {
+              type: 'video',
+              videos: [
+                {
+                  videoId: result.id.videoId,
+                  title: result.snippet.title
+                }
+              ]
+            };
+          } else if (result.id.kind === 'youtube#playlist') {
+            console.log('playlist');
+            this.wait(result).then((res) => {
+              console.log('last call before departure',res);
+              videos[i] = res;
+              this.setState({ videos, isLoading: false });
+              console.log('this.state', this.state);
+              //   videoIndex: 0 // Voir si c'est la bonne place pour le resetter à 0
+            });
           }
-        );
-        console.log('OUTSIDE FOREACH');
-
-        // this.setState({
-        //   videos: firstResult,
-        //   isLoading: false,
-        //   videoIndex: 0 // Voir si c'est la bonne place pour le resetter à 0
-        // });
-
-      });
+        }
+      );
     });
+  };
+
+  renderVideo = () => {
+    const { videoIndex, videos } = this.state;
+    console.log('video',videos[videoIndex].videos[0].videoId);
+    if (videos[videoIndex].type === 'playlist') {
+      return (
+        <Video videoId={videos[videoIndex].videos[0].videoId} />
+      )
+    } else if (videos[videoIndex].type === 'playlist') {
+      return (
+        <div>Here lies a playlist</div>
+        // <Video videoId={videos[videoIndex].id.videoId} />
+      )
+    }
   };
 
   setVideoIndex = (status) => {
@@ -175,7 +182,7 @@ class App extends Component {
   };
 
   render() {
-    const { artistName, isLoading, musicGenre, videoIndex, videos } = this.state;
+    const { artistName, isLoading, musicGenre } = this.state;
     const album = this.state.album ? {
       type: 'album',
       title: this.state.album.title
@@ -202,7 +209,7 @@ class App extends Component {
             {
               isLoading ?
                 <CircularProgress color="secondary" thickness={3} size={100} /> :
-                <Video videoId={videos[videoIndex].id.videoId} />
+                this.renderVideo()
             }
           </div>
         </div>
