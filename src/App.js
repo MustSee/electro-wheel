@@ -58,7 +58,7 @@ class App extends Component {
   };
 
   handleMainClick = () => {
-    this.setState({ isLoading: true, trackItemNmber: 0, buttonMessage: '' });
+    this.setState({ isLoading: true, trackItemNumber: 0, buttonMessage: '' });
     // 1. from data.length, choose one music type randomly
     const length = data.music.length;
     let randomMusicGenreIndex = this.randomNumber(length);
