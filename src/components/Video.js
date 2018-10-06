@@ -12,7 +12,7 @@ class Video extends Component {
   render() {
     const videoId = this.props.videoId;
     const opts = {
-      height: '250px',
+      height: '200px',
       width: '100%',
       playerVars: { // https://developers.google.com/youtube/player_parameters
         autoplay: 1

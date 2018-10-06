@@ -55,3 +55,14 @@ Video = l'espace restant !
   height: Calc(100vh - 56px - 40vh); /* Mettre une height minimal */
   background-color: #f5f5f5;
 }
+
+.titlePieceTypo {
+  width: 95%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.trackCounterChip {
+  background-color: #fff;
+}
