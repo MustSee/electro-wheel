@@ -222,7 +222,7 @@ class App extends Component {
           marginLeft: 'auto',
           marginRight: 'auto',
         }}>
-          <Typography variant="caption" gutterBottom>
+          <Typography variant="caption" gutterBottom className="titlePieceTypo">
             {videos[videoIndex].videos[trackItemNumber].title}
           </Typography>
           <Video videoId={videos[videoIndex].videos[trackItemNumber].videoId} />
