@@ -247,7 +247,11 @@ class App extends Component {
           <Typography variant="caption" gutterBottom className="titlePieceTypo">
             {videos[videoIndex].videos[trackItemNumber].title}
           </Typography>
-          <Video videoId={videos[videoIndex].videos[trackItemNumber].videoId} />
+          <Video videoId={videos[videoIndex].videos[trackItemNumber].videoId}
+                 nextTrack={this.clickPreviousAndNextTrack}
+                 trackItemNumber={trackItemNumber}
+                 tracksNumber={videos[videoIndex].length}
+          />
           <NextPreviousTrack
             previousTrack={this.clickPreviousAndNextTrack}
             nextTrack={this.clickPreviousAndNextTrack}
