@@ -6,7 +6,6 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center ",
-    paddingTop: 5,
   }
 };
 
