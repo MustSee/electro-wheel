@@ -4,7 +4,7 @@ import { Button } from "@material-ui/core";
 const styles = {
   mainActionButton: {
     height: "40px",
-    backgroundColor: "#ff9100",
+    backgroundColor: "#ff9100"
   }
 };
 

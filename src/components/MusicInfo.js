@@ -9,8 +9,17 @@ class MusicInfo extends Component {
 
   renderIcon = () => {
     const type = this.props.piece.type;
-    if (type === "album") return <div><Icon>album</Icon></div>;
-    return <div><Icon>music_note</Icon></div>;
+    if (type === "album")
+      return (
+        <div>
+          <Icon>album</Icon>
+        </div>
+      );
+    return (
+      <div>
+        <Icon>music_note</Icon>
+      </div>
+    );
   };
 
   render() {

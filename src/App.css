@@ -131,13 +131,14 @@ body {
   .musicInfo {
     height: 40vh;
     min-height: 40vh;
+    padding-top: 3vh ;
     display: flex;
     flex-direction: column;
     background: linear-gradient(#fbe9e7, #fff);
   }
 
   .musicInfo_genreWrapper {
-    flex: 1.5;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -150,7 +151,6 @@ body {
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     line-height: 1.20588em;
   }
-
 
   .musicInfo_artistNameWrapper {
     width: 90%;
@@ -192,7 +192,7 @@ body {
   }
 
   .musicInfo_mainActionButtonWrapper {
-    flex: 1.5;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
