@@ -4,9 +4,6 @@ import { Paper } from '@material-ui/core';
 
 class Video extends Component {
   _onReady = (event) => {
-    // console.log('_onReady');
-    // access to player in all event handlers via event.target
-    // event.target.pauseVideo();
   };
 
   render() {
