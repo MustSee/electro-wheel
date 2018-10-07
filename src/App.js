@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { CircularProgress, Typography } from "@material-ui/core";
-import AppBar from "./components/SimpleAppBar";
+// import AppBar from "./components/SimpleAppBar";
 import MusicInfo from "./components/MusicInfo";
 import NextPreviousTrack from "./components/NextPreviousTrack";
 import Buttons from "./components/Buttons";
@@ -308,7 +308,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <div className="globalContent">
-          <AppBar title="Electro Wheel" />
+          {/*<AppBar title="Electro Wheel" />*/}
           <MusicInfo
             genre={musicGenre}
             artist={artistName}
