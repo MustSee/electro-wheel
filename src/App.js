@@ -307,7 +307,7 @@ class App extends Component {
 
     return (
       <React.Fragment>
-        <div className="globalContent">
+        <div className="global">
           {/*<AppBar title="Electro Wheel" />*/}
           <MusicInfo
             genre={musicGenre}

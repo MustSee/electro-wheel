@@ -5,7 +5,7 @@ const styles = {
   tracksWrapper: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center ",
+    alignItems: "center "
   }
 };
 
@@ -36,10 +36,7 @@ class NextPreviousTrack extends Component {
         >
           <Icon>skip_previous_button</Icon>
         </IconButton>
-        <Chip
-          label={this.label()}
-          variant="outlined"
-        />
+        <Chip label={this.label()} variant="outlined" />
         <IconButton
           onClick={this.clickNextTrack}
           disabled={trackItemNumber === tracksNumber - 1}

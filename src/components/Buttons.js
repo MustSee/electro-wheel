@@ -6,7 +6,7 @@ const styles = {
     backgroundColor: "#fff",
     background: "linear-gradient(#fff, #f5f5f5)",
     paddingBottom: 5
-},
+  },
   prevButton: {
     marginRight: "10px",
     backgroundColor: "#fff"
@@ -22,10 +22,10 @@ class Buttons extends Component {
   };
 
   render() {
-    const {videoIndex, videosLength} = this.props;
+    const { videoIndex, videosLength } = this.props;
     return (
       <Paper
-        className="buttonWrapper"
+        className="buttons"
         style={styles.bgColor}
         elevation={0}
         square={true}

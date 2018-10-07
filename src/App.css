@@ -1,65 +1,235 @@
+/******************
+**  DEFAULT CSS  **
+******************/
+
 body {
   margin: 0;
   padding: 0;
   user-select: none;
-  background-color: #f5f5f5;
 }
 
-/*
-AppBar = 48px jusqu'à 480px width, puis 64px après
-MusicInfo = 35vh
-Buttons = 76px
-Video = l'espace restant !
-*/
-
-.globalContent {
+.global {
   height: 100vh;
-  display: flex; /* A permis de passer la AppBar au-dessus de la card ! Enfin ! */
-  flex-direction: column;
-}
-
-/*****************
-**  MUSIC INFO  **
-*****************/
-
-.musicInfoWrapper {
-  height: 45vh; /* Mettre une height minimal */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background: linear-gradient(#fbe9e7, #fff);
 }
 
-.capitalize {
-  text-transform: capitalize;
-}
+/**********************
+**  END DEFAULT CSS  **
+**********************/
 
-/*****************
-***   BUTTONS  ***
-*****************/
 
-.buttonWrapper {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px;
-}
 
-/*****************
-****   VIDEO   ***
-*****************/
-
-.videoWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: Calc(100vh - 49px - 45vh); /* Mettre une height minimal */
-  background-color: #f5f5f5;
-}
 
 .titlePieceTypo {
   width: 95%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+}
+
+/*2 sizes for mobiles*/
+
+@media (min-width: 401px) and (max-width: 480px) {
+
+
+  /*****************
+  **  MUSIC INFO  **
+  *****************/
+
+  .musicInfo {
+    height: 40vh;
+    min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(#fbe9e7, #fff);
+  }
+
+  .musicInfo_genre {
+    flex: 1;
+    text-align: center;
+    /*margin-bottom: 0.35em;*/
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 2.125rem;
+    font-weight: 400;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    line-height: 1.20588em;
+  }
+
+  .musicInfo_artistName {
+    flex: 1;
+    text-transform: capitalize;
+    text-align: center;
+    /*margin-bottom: 0.35em;*/
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    line-height: 1.35417em;
+  }
+
+  .musicInfo_titleWrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .musicInfo_title {
+    text-align: center;
+    margin-left: 5px;
+    /*margin-bottom: 0.35em;*/
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    line-height: 1.5em;
+  }
+
+  .musicInfo_mainActionButtonContainer {
+    flex: 1;
+    display: flex;
+    align-self: center;
+  }
+
+  .musicInfo_mainActionButton_title {
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    text-transform: uppercase;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 400px) {
+
+
+
+  /*****************
+  **  MUSIC INFO  **
+  *****************/
+
+  .musicInfo {
+    height: 40vh;
+    min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(#fbe9e7, #fff);
+  }
+
+  .musicInfo_genreWrapper {
+    flex: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .musicInfo_genre {;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 2rem;
+    font-weight: 400;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    line-height: 1.20588em;
+  }
+
+
+  .musicInfo_artistNameWrapper {
+    width: 90%;
+    margin: 0 auto 0 auto;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .musicInfo_artistName {
+    flex: 1;
+    text-transform: capitalize;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 1.3rem;
+    font-weight: 400;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    line-height: 1.35417em;
+  }
+
+  .musicInfo_titleWrapper {
+    width: 90%;
+    margin: 0 auto 0 auto;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .musicInfo_title {
+    text-align: center;
+    margin-left: 5px;
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    line-height: 1.5em;
+  }
+
+  .musicInfo_mainActionButtonWrapper {
+    flex: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .musicInfo_mainActionButton_title {
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    text-transform: uppercase;
+  }
+
+  /*****************
+  ***   BUTTONS  ***
+  *****************/
+
+  .buttons {
+    height: 10vh;
+    min-height: 10vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+  }
+
+  /*****************
+  ****   VIDEO   ***
+  *****************/
+
+  .videoWrapper {
+    height: 50vh;
+    min-height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+  }
+
 }

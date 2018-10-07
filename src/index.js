@@ -13,22 +13,6 @@ const theme = createMuiTheme({
     secondary: {
       main: "#ff9100"
     }
-  },
-  overrides: {
-    MuiAppBar: {
-      root: {
-        height: 48
-      }
-    },
-    MuiToolbar: {
-      root: {
-        height: 48
-      },
-      regular: {
-        height: 48,
-        minHeight: 48
-      }
-    }
   }
 });
 

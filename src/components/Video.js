@@ -10,14 +10,14 @@ class Video extends Component {
   };
 
   _onEnd = () => {
-    const {trackItemNumber, tracksNumber} = this.props;
+    const { trackItemNumber, tracksNumber } = this.props;
     if (trackItemNumber < tracksNumber - 1) {
       this.props.nextTrack({ value: 1 });
     }
   };
 
   render() {
-    const {videoId} = this.props;
+    const { videoId } = this.props;
     const opts = {
       height: "200px",
       width: "100%",
@@ -28,7 +28,12 @@ class Video extends Component {
     };
     return (
       <Paper square={true}>
-        <YouTube videoId={videoId} opts={opts} onReady={this._onReady} onEnd={this._onEnd} />
+        <YouTube
+          videoId={videoId}
+          opts={opts}
+          onReady={this._onReady}
+          onEnd={this._onEnd}
+        />
       </Paper>
     );
   }
