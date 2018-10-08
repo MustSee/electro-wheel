@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { CircularProgress, Typography } from "@material-ui/core";
+import { CircularProgress } from "@material-ui/core";
 // import AppBar from "./components/SimpleAppBar";
 import MusicInfo from "./components/MusicInfo";
 import NextPreviousTrack from "./components/NextPreviousTrack";
@@ -33,7 +33,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.handleMainClick();
+    // this.handleMainClick();
   }
 
   // onlineCheck = () => {
@@ -222,31 +222,19 @@ class App extends Component {
     const { videoIndex, videos, trackItemNumber } = this.state;
     if (videos[videoIndex].type === "video") {
       return (
-        <div
-          style={{
-            width: "80%",
-            marginLeft: "auto",
-            marginRight: "auto"
-          }}
-        >
-          <Typography variant="caption" gutterBottom className="titlePieceTypo">
-            {videos[videoIndex].videos[0].title}
-          </Typography>
+        <div className="video_video_wrapper">
+          {/*<Typography variant="caption" gutterBottom className="titlePieceTypo">*/}
+            {/*{videos[videoIndex].videos[0].title}*/}
+          {/*</Typography>*/}
           <Video videoId={videos[videoIndex].videos[0].videoId} />
         </div>
       );
     } else if (videos[videoIndex].type === "playlist") {
       return (
-        <div
-          style={{
-            width: "80%",
-            marginLeft: "auto",
-            marginRight: "auto"
-          }}
-        >
-          <Typography variant="caption" gutterBottom className="titlePieceTypo">
-            {videos[videoIndex].videos[trackItemNumber].title}
-          </Typography>
+        <div className="video_video_wrapper">
+          {/*<Typography variant="caption" gutterBottom className="titlePieceTypo">*/}
+            {/*{videos[videoIndex].videos[trackItemNumber].title}*/}
+          {/*</Typography>*/}
           <Video videoId={videos[videoIndex].videos[trackItemNumber].videoId}
                  nextTrack={this.clickPreviousAndNextTrack}
                  trackItemNumber={trackItemNumber}
@@ -265,16 +253,13 @@ class App extends Component {
 
   setVideoIndex = status => {
     const { videoIndex, videos } = this.state;
-    console.log("videoIndex", videoIndex);
     if (status === "next") {
-      console.log("next");
       if (videoIndex < videos.length - 1) {
         this.setState({ videoIndex: videoIndex + 1, buttonMessage: "" });
       } else if (videoIndex === videos.length - 1) {
         this.setState({ buttonMessage: "Cannot go any further" });
       }
     } else if (status === "previous") {
-      console.log("previous");
       if (videoIndex > 0) {
         this.setState({ videoIndex: videoIndex - 1, buttonMessage: "" });
       } else if (videoIndex === 0) {
@@ -321,9 +306,11 @@ class App extends Component {
             videosLength={videos.length}
             buttonMessage={buttonMessage}
           />
-          <div className="videoWrapper">
+          <div className="video">
             {isLoading ? (
-              <CircularProgress color="secondary" thickness={3} size={100} />
+              <div className="video_circularProgress">
+                <CircularProgress color="secondary" thickness={3} size={100} />
+              </div>
             ) : (
               this.renderVideo()
             )}

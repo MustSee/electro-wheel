@@ -11,14 +11,14 @@ class MusicInfo extends Component {
     const type = this.props.piece.type;
     if (type === "album")
       return (
-        <div>
+        <span>
           <Icon>album</Icon>
-        </div>
+        </span>
       );
     return (
-      <div>
+      <span>
         <Icon>music_note</Icon>
-      </div>
+      </span>
     );
   };
 
@@ -26,13 +26,13 @@ class MusicInfo extends Component {
     const { genre, artist, piece } = this.props;
     return (
       <div className="musicInfo">
-        <div className="musicInfo_genreWrapper">
+        <div className="musicInfo_genre_wrapper">
           <div className="musicInfo_genre">{genre.toUpperCase()}</div>
         </div>
-        <div className="musicInfo_artistNameWrapper">
+        <div className="musicInfo_artistName_wrapper">
           <div className="musicInfo_artistName">{artist}</div>
         </div>
-        <div className="musicInfo_titleWrapper">
+        <div className="musicInfo_title_wrapper">
           {this.renderIcon()}
           <div className="musicInfo_title">{piece.title}</div>
         </div>

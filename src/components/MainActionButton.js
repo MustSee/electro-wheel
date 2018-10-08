@@ -15,7 +15,7 @@ class MainActionButton extends Component {
 
   render() {
     return (
-      <div className="musicInfo_mainActionButtonWrapper">
+      <div className="musicInfo_mainActionButton_wrapper">
         <Button
           onClick={this.handleClickOnSearchButton}
           style={styles.mainActionButton}

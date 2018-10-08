@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import YouTube from "react-youtube";
-import { Paper } from "@material-ui/core";
 
 class Video extends Component {
   _onReady = event => {
@@ -19,7 +18,7 @@ class Video extends Component {
   render() {
     const { videoId } = this.props;
     const opts = {
-      height: "200px",
+      height: "75%",
       width: "100%",
       playerVars: {
         // https://developers.google.com/youtube/player_parameters
@@ -27,14 +26,12 @@ class Video extends Component {
       }
     };
     return (
-      <Paper square={true}>
         <YouTube
           videoId={videoId}
           opts={opts}
           onReady={this._onReady}
           onEnd={this._onEnd}
         />
-      </Paper>
     );
   }
 }
