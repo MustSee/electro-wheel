@@ -21,6 +21,7 @@ class App extends Component {
       isLoading: true,
       musicGenre: "",
       musicGenreIndex: null,
+      secret: false,
       song: {},
       trackItemNumber: 0,
       videoIndex: 0,
@@ -58,6 +59,10 @@ class App extends Component {
   //     xhr.send();
   //   });
   // };
+
+  getSecret = (secretState) => {
+    this.setState({secret: secretState});
+  };
 
   randomNumber = max => {
     return Math.floor(Math.random() * max);
@@ -303,12 +308,13 @@ class App extends Component {
       <React.Fragment>
         <div className="global">
           {/*<AppBar title="Electro Wheel" />*/}
-          <DataIntegrityCheck data={payload}/>
+          {this.state.secret ? <DataIntegrityCheck data={payload}/> : null}
           <MusicInfo
             genre={musicGenre}
             artist={artistName}
             piece={album.title ? album : song}
             handleMainSearch={this.handleMainClick}
+            getSecret={this.getSecret}
           />
           <Buttons
             handleVideoIndex={status => this.setVideoIndex(status)}
