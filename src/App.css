@@ -12,6 +12,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 /**********************
@@ -19,6 +20,12 @@ body {
 **********************/
 
 @media (min-width: 481px) and (max-width: 767px) {
+}
+
+.dataIntegrityButton {
+  position: absolute;
+  top: 30px;
+  right: 30px;
 }
 
   /*****************
