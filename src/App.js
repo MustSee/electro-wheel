@@ -3,6 +3,7 @@ import axios from "axios";
 import { CircularProgress } from "@material-ui/core";
 // import AppBar from "./components/SimpleAppBar";
 import MusicInfo from "./components/MusicInfo";
+import DataIntegrityCheck from "./components/DataIntegrityCheck";
 import NextPreviousTrack from "./components/NextPreviousTrack";
 import Buttons from "./components/Buttons";
 import Video from "./components/Video";
@@ -20,6 +21,7 @@ class App extends Component {
       isLoading: true,
       musicGenre: "",
       musicGenreIndex: null,
+      secret: false,
       song: {},
       trackItemNumber: 0,
       videoIndex: 0,
@@ -57,6 +59,10 @@ class App extends Component {
   //     xhr.send();
   //   });
   // };
+
+  getSecret = (secretState) => {
+    this.setState({secret: secretState});
+  };
 
   randomNumber = max => {
     return Math.floor(Math.random() * max);
@@ -290,15 +296,25 @@ class App extends Component {
         }
       : null;
 
+    // payloadData for integrity check
+    let payload = {
+      musicGenre,
+      artistName,
+      piece: album.title ? album : song,
+      videos: videos[videoIndex]
+    };
+
     return (
       <React.Fragment>
         <div className="global">
           {/*<AppBar title="Electro Wheel" />*/}
+          {this.state.secret ? <DataIntegrityCheck data={payload}/> : null}
           <MusicInfo
             genre={musicGenre}
             artist={artistName}
             piece={album.title ? album : song}
             handleMainSearch={this.handleMainClick}
+            getSecret={this.getSecret}
           />
           <Buttons
             handleVideoIndex={status => this.setVideoIndex(status)}

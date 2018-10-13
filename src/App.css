@@ -12,6 +12,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 /**********************
@@ -21,6 +22,30 @@ body {
 @media (min-width: 481px) and (max-width: 767px) {
 }
 
+.dataIntegrityPushButton {
+  position: absolute;
+  top: 70px;
+  right: 30px;
+  text-align: center;
+}
+
+.dataIntegrityRemoveButton {
+  position: absolute;
+  top: 70px;
+  left: 30px;
+}
+
+.noGoodResultsButton {
+  position: absolute;
+  top: 130px;
+  left: 30px;
+}
+
+.RemoveNoGoodResultsButton {
+  position: absolute;
+  top: 210px;
+  left: 30px;
+}
   /*****************
   **  MUSIC INFO  **
   *****************/
