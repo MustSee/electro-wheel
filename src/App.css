@@ -22,10 +22,16 @@ body {
 @media (min-width: 481px) and (max-width: 767px) {
 }
 
-.dataIntegrityButton {
+.dataIntegrityPushButton {
   position: absolute;
   top: 30px;
   right: 30px;
+}
+
+.dataIntegrityRemoveButton {
+  position: absolute;
+  top: 30px;
+  left: 30px;
 }
 
   /*****************
