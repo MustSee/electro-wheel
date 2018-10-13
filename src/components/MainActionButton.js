@@ -1,14 +1,9 @@
 import React, { Component } from "react";
-import { Button, Typography } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 const styles = {
-  wrapperButton: {
-    display: "flex",
-    justifyContent: "center",
-    marginTop: "25px"
-  },
-  mainButton: {
-    height: "40px", // Gérer les différentes tailles d'écrans
+  mainActionButton: {
+    height: "40px",
     backgroundColor: "#ff9100"
   }
 };
@@ -20,14 +15,15 @@ class MainActionButton extends Component {
 
   render() {
     return (
-      <div style={styles.wrapperButton}>
+      <div className="musicInfo_mainActionButton_wrapper">
         <Button
           onClick={this.handleClickOnSearchButton}
+          style={styles.mainActionButton}
+          className="musicInfo_mainActionButton"
           variant="extendedFab"
-          style={styles.mainButton}
           size="medium"
         >
-          <Typography variant="button">Roll the Wheel</Typography>
+          <div className="musicInfo_mainActionButton_title">Roll the Wheel</div>
         </Button>
       </div>
     );

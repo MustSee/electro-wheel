@@ -1,14 +1,6 @@
 import React, { Component } from "react";
 import { Chip, Icon, IconButton, Typography } from "@material-ui/core";
 
-const styles = {
-  tracksWrapper: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center "
-  }
-};
-
 class NextPreviousTrack extends Component {
   clickPreviousTrack = () => {
     this.props.previousTrack({ value: -1 });
@@ -29,17 +21,14 @@ class NextPreviousTrack extends Component {
   render() {
     const { trackItemNumber, tracksNumber } = this.props;
     return (
-      <div style={styles.tracksWrapper}>
+      <div className="video_tracks_wrapper">
         <IconButton
           onClick={this.clickPreviousTrack}
           disabled={trackItemNumber === 0}
         >
           <Icon>skip_previous_button</Icon>
         </IconButton>
-        <Chip
-          label={this.label()}
-          variant="outlined"
-        />
+        <Chip label={this.label()} variant="outlined" />
         <IconButton
           onClick={this.clickNextTrack}
           disabled={trackItemNumber === tracksNumber - 1}

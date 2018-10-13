@@ -1,19 +1,6 @@
 import React, { Component } from "react";
 import MainActionButton from "./MainActionButton";
-import { Paper, CardContent, Typography, withTheme } from "@material-ui/core";
 import Icon from "@material-ui/core/Icon";
-
-const styles = {
-  titleWrapper: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "flex-start",
-    flexWrap: "wrap"
-  },
-  title: {
-    marginLeft: "5px"
-  }
-};
 
 class MusicInfo extends Component {
   handleMainClick = () => {
@@ -22,49 +9,37 @@ class MusicInfo extends Component {
 
   renderIcon = () => {
     const type = this.props.piece.type;
-    if (type === "album") return <Icon>album</Icon>;
-    return <Icon>music_note</Icon>;
+    if (type === "album")
+      return (
+        <span>
+          <Icon>album</Icon>
+        </span>
+      );
+    return (
+      <span>
+        <Icon>music_note</Icon>
+      </span>
+    );
   };
 
   render() {
-    const { genre, artist, piece, theme } = this.props;
-    const primary = theme.palette.primary.main;
+    const { genre, artist, piece } = this.props;
     return (
-      <Paper
-        position="static"
-        style={{ backgroundColor: primary }} // overthrown by classname right down below
-        elevation={0}
-        className="musicInfoWrapper"
-        square={true}
-      >
-        <CardContent>
-          <Typography variant="display1" gutterBottom align="center">
-            {genre.toUpperCase()}
-          </Typography>
-          <Typography
-            variant="headline"
-            gutterBottom
-            align="center"
-            className="capitalize"
-          >
-            {artist}
-          </Typography>
-          <div style={styles.titleWrapper}>
-            {this.renderIcon()}
-            <Typography
-              variant="subheading"
-              gutterBottom
-              align="center"
-              style={styles.title}
-            >
-              {piece.title}
-            </Typography>
-          </div>
-          <MainActionButton handleMainSearch={this.handleMainClick} />
-        </CardContent>
-      </Paper>
+      <div className="musicInfo">
+        <div className="musicInfo_genre_wrapper">
+          <div className="musicInfo_genre">{genre.toUpperCase()}</div>
+        </div>
+        <div className="musicInfo_artistName_wrapper">
+          <div className="musicInfo_artistName">{artist}</div>
+        </div>
+        <div className="musicInfo_title_wrapper">
+          {this.renderIcon()}
+          <div className="musicInfo_title">{piece.title}</div>
+        </div>
+        <MainActionButton handleMainSearch={this.handleMainClick} />
+      </div>
     );
   }
 }
 
-export default withTheme()(MusicInfo);
+export default MusicInfo;
