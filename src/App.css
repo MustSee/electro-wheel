@@ -34,6 +34,17 @@ body {
   left: 30px;
 }
 
+.noGoodResultsButton {
+  position: absolute;
+  top: 150px;
+  left: 30px;
+}
+
+.RemoveNoGoodResultsButton {
+  position: absolute;
+  top: 270px;
+  left: 30px;
+}
   /*****************
   **  MUSIC INFO  **
   *****************/
