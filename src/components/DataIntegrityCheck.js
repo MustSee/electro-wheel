@@ -6,9 +6,67 @@ class DataIntegrityCheck extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isChecking: false
+      idsLength: 0,
+      isChecking: false,
+      hasId: false,
+      isNoGood: false,
     };
   }
+
+  componentDidMount () {
+    this.isDataCheckAlreadyDone();
+  };
+
+  componentDidUpdate (prevProps) {
+    if (this.props !== prevProps) {
+      this.isDataCheckAlreadyDone();
+    }
+  }
+
+  isDataCheckAlreadyDone = () => {
+    const { musicGenre, artistName, piece, videos } = this.props.data;
+    const { title } = piece;
+    const type = piece.type + "s";
+    // Check if there are already IDs in DF
+    const ref = firebase
+      .database()
+      .ref(`music/${encodeURIComponent(musicGenre)}/${encodeURIComponent(artistName)}/${encodeURIComponent(title)}`);
+
+      ref.once("value", snapshot => {
+        if (snapshot.exists()) {
+          snapshot.forEach((val) => {
+            const value = val.val();
+            if (!value.noGood) {
+              const length = Object.keys(value.video).length;
+              this.setState({hasId: true, idsLength: length});
+            }
+          });
+        } else {
+          this.setState({hasId: false, idsLength: 0});
+        }
+      });
+    // Check if piece is already tagged "no good"
+    const ref2 = firebase
+      .database()
+      .ref(`music/${encodeURIComponent(musicGenre)}/${encodeURIComponent(artistName)}/${encodeURIComponent(title)}`);
+
+    const payload2 = {"noGood": true};
+    ref2
+      .orderByChild("noGood")
+      .equalTo(payload2.noGood)
+      .once("value", snapshot => {
+        if (snapshot.exists()) {
+          snapshot.forEach(data => {
+            const value = data.val();
+            if (value.noGood === payload2.noGood) {
+              this.setState({isNoGood: true});
+            }
+          });
+        } else {
+          this.setState({isNoGood: false});
+        }
+      });
+  };
 
   handlePush = () => {
     this.setState({ isChecking: true });
@@ -33,12 +91,16 @@ class DataIntegrityCheck extends Component {
             snapshot.forEach(data => {
               const value = data.val();
               if (value.videoId !== payload.videoId) {
-                ref.push(payload);
+                ref.push(payload).then(() => {
+                  this.isDataCheckAlreadyDone();
+                });
               }
             });
             this.setState({ isChecking: false });
           } else {
-            ref.push(payload);
+            ref.push(payload).then(() => {
+              this.isDataCheckAlreadyDone();
+            });
             this.setState({ isChecking: false });
           }
         });
@@ -52,12 +114,16 @@ class DataIntegrityCheck extends Component {
             snapshot.forEach(data => {
               const value = data.val();
               if (value.playlistId !== payload.playlistId) {
-                ref.push(payload);
+                ref.push(payload).then(() => {
+                  this.isDataCheckAlreadyDone();
+                });
               }
             });
             this.setState({ isChecking: false });
           } else {
-            ref.push(payload);
+            ref.push(payload).then(() => {
+              this.isDataCheckAlreadyDone();
+            });
             this.setState({ isChecking: false });
           }
         });
@@ -85,7 +151,9 @@ class DataIntegrityCheck extends Component {
         .once("value", snapshot => {
           if (snapshot.exists()) {
             snapshot.forEach(data => {
-              ref.child(data.key).remove();
+              ref.child(data.key).remove().then(() => {
+                this.isDataCheckAlreadyDone();
+              });
             });
           }
           this.setState({ isChecking: false });
@@ -98,7 +166,9 @@ class DataIntegrityCheck extends Component {
         .once("value", snapshot => {
           if (snapshot.exists()) {
             snapshot.forEach(data => {
-              ref.child(data.key).remove();
+              ref.child(data.key).remove().then(() => {
+                this.isDataCheckAlreadyDone();
+              });
             });
           }
           this.setState({ isChecking: false });
@@ -123,13 +193,18 @@ class DataIntegrityCheck extends Component {
           snapshot.forEach(data => {
             const value = data.val();
             if (value.noGood !== payload.noGood) {
-              ref.push(payload);
+              ref.push(payload).then(() => {
+                this.isDataCheckAlreadyDone();
+              });
             }
             this.setState({ isChecking: false });
           });
         } else {
-          ref.push(payload);
+          ref.push(payload).then(() => {
+            this.isDataCheckAlreadyDone();
+          });
           this.setState({ isChecking: false });
+
         }
       });
   };
@@ -149,7 +224,9 @@ class DataIntegrityCheck extends Component {
       .once("value", snapshot => {
         if (snapshot.exists()) {
           snapshot.forEach(data => {
-            ref.child(data.key).remove();
+            ref.child(data.key).remove().then(() => {
+              this.isDataCheckAlreadyDone();
+            });
           });
         }
         this.setState({ isChecking: false });
@@ -177,6 +254,7 @@ class DataIntegrityCheck extends Component {
           >
             Get IDs
           </Button>
+          {this.state.hasId ? <div>has {this.state.idsLength} id</div> : null}
         </div>
         <div className="noGoodResultsButton">
           <Button
@@ -186,6 +264,7 @@ class DataIntegrityCheck extends Component {
           >
             No good
           </Button>
+          {this.state.isNoGood ? <div>is tagged no good</div> : null}
         </div>
         <div className="RemoveNoGoodResultsButton">
           <Button

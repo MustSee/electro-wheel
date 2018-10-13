@@ -24,25 +24,26 @@ body {
 
 .dataIntegrityPushButton {
   position: absolute;
-  top: 30px;
+  top: 70px;
   right: 30px;
+  text-align: center;
 }
 
 .dataIntegrityRemoveButton {
   position: absolute;
-  top: 30px;
+  top: 70px;
   left: 30px;
 }
 
 .noGoodResultsButton {
   position: absolute;
-  top: 150px;
+  top: 130px;
   left: 30px;
 }
 
 .RemoveNoGoodResultsButton {
   position: absolute;
-  top: 270px;
+  top: 210px;
   left: 30px;
 }
   /*****************
