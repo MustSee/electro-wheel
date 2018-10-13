@@ -24,9 +24,8 @@ class DataIntegrityCheck extends Component {
   }
 
   isDataCheckAlreadyDone = () => {
-    const { musicGenre, artistName, piece, videos } = this.props.data;
+    const { musicGenre, artistName, piece } = this.props.data;
     const { title } = piece;
-    const type = piece.type + "s";
     // Check if there are already IDs in DF
     const ref = firebase
       .database()
@@ -37,8 +36,16 @@ class DataIntegrityCheck extends Component {
           snapshot.forEach((val) => {
             const value = val.val();
             if (!value.noGood) {
-              const length = Object.keys(value.video).length;
-              this.setState({hasId: true, idsLength: length});
+              console.log(value);
+              let videoLength = 0;
+              let playlistLength = 0;
+              if (value.hasOwnProperty('video')) {
+                videoLength = Object.keys(value.video).length;
+              }
+              if (value.hasOwnProperty('playlist')) {
+                playlistLength = Object.keys(value.playlist).length;
+              }
+              this.setState({hasId: true, idsLength: videoLength + playlistLength});
             }
           });
         } else {
@@ -72,7 +79,7 @@ class DataIntegrityCheck extends Component {
     this.setState({ isChecking: true });
     const { musicGenre, artistName, piece, videos } = this.props.data;
     const { title } = piece;
-    const type = piece.type + "s";
+    const type = piece.type;
     const ref = firebase
       .database()
       .ref(`music/${encodeURIComponent(musicGenre)}/${encodeURIComponent(artistName)}/${encodeURIComponent(title)}/${type}/${videos.type}`);
@@ -134,7 +141,7 @@ class DataIntegrityCheck extends Component {
     this.setState({ isChecking: true });
     const { musicGenre, artistName, piece, videos } = this.props.data;
     const { title } = piece;
-    const type = piece.type + "s";
+    const type = piece.type;
     const ref = firebase
       .database()
       .ref(`music/${encodeURIComponent(musicGenre)}/${encodeURIComponent(artistName)}/${encodeURIComponent(title)}/${type}/${videos.type}`);
