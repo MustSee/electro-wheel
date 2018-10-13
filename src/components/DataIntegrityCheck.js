@@ -36,7 +36,6 @@ class DataIntegrityCheck extends Component {
           snapshot.forEach((val) => {
             const value = val.val();
             if (!value.noGood) {
-              console.log(value);
               let videoLength = 0;
               let playlistLength = 0;
               if (value.hasOwnProperty('video')) {

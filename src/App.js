@@ -262,14 +262,10 @@ class App extends Component {
     if (status === "next") {
       if (videoIndex < videos.length - 1) {
         this.setState({ videoIndex: videoIndex + 1, buttonMessage: "" });
-      } else if (videoIndex === videos.length - 1) {
-        this.setState({ buttonMessage: "Cannot go any further" });
       }
     } else if (status === "previous") {
       if (videoIndex > 0) {
         this.setState({ videoIndex: videoIndex - 1, buttonMessage: "" });
-      } else if (videoIndex === 0) {
-        this.setState({ buttonMessage: "Cannot go any further" });
       }
     }
   };
