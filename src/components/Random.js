@@ -303,7 +303,7 @@ class Random extends Component {
     return (
       <React.Fragment>
         <div className="global">
-          <SimpleMenu />
+          {this.state.secret ? <SimpleMenu /> : null }
           {/*<AppBar title="Electro Wheel" />*/}
           {this.state.secret ? <DataIntegrityCheck data={payload}/> : null}
           <MusicInfo
