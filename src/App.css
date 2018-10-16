@@ -15,12 +15,21 @@ body {
   position: relative;
 }
 
+.menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
 /**********************
 **  END DEFAULT CSS  **
 **********************/
 
-@media (min-width: 481px) and (max-width: 767px) {
-}
+/* temporary css */
 
 .dataIntegrityPushButton {
   position: absolute;
@@ -46,23 +55,29 @@ body {
   top: 210px;
   left: 30px;
 }
+
+
+@media (min-width: 481px) and (max-width: 767px) {
+}
+
+/**********************
+***  HISTORY MODE   ***
+**********************/
+
+  .list {
+    height: 47vh;
+    min-height: 47vh;
+    max-height: 47vh;
+    overflow-y: auto;
+    padding-top: 5vh ;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(#fbe9e7, #fff);
+  }
+
   /*****************
   **  MUSIC INFO  **
   *****************/
-
-  .menu {
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  li, a {
-    border: none;
-  }
 
   .musicInfo {
     height: 40vh;

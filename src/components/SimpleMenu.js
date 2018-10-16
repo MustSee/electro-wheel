@@ -35,6 +35,7 @@ class SimpleMenu extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
           elevation={0}
+          disableAutoFocusItem
         >
           <Link to='/'>
             <MenuItem onClick={this.handleClose}>Random mode</MenuItem>
