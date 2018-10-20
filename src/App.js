@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { CircularProgress } from "@material-ui/core";
-// import AppBar from "./components/SimpleAppBar";
 import MusicInfo from "./components/MusicInfo";
 import DataIntegrityCheck from "./components/DataIntegrityCheck";
 import NextPreviousTrack from "./components/NextPreviousTrack";
@@ -37,28 +36,6 @@ class App extends Component {
   componentDidMount() {
     this.handleMainClick();
   }
-
-  // onlineCheck = () => {
-  //   console.log('onlineCheck');
-  //   const baseUrl = 'https://www.google.com';
-  //   let xhr = new XMLHttpRequest();
-  //   return new Promise((resolve, reject)=>{
-  //     xhr.onload = () => {
-  //       // Set online status
-  //       console.log('onlineCheck TRUE');
-  //       this.setState({ isOnline: true });
-  //       resolve(true);
-  //     };
-  //     xhr.onerror = () => {
-  //       // Set online status
-  //       console.log('onlineCheck FALSE');
-  //       this.setState({ isOnline: false });
-  //       reject(false);
-  //     };
-  //     xhr.open('GET', baseUrl, true);
-  //     xhr.send();
-  //   });
-  // };
 
   getSecret = (secretState) => {
     this.setState({secret: secretState});
@@ -193,7 +170,6 @@ class App extends Component {
             if (videos[0]) {
               resolve(videos);
             }
-            //   videoIndex: 0 // Voir si c'est la bonne place pour le resetter à 0
           });
         }
       });
@@ -203,12 +179,6 @@ class App extends Component {
   handleYoutubeAPI = URL => {
     axios.get(URL).then(res => {
       const results = res.data.items;
-      // subResults to test playlists
-      // const subResults = results.filter((item) => {
-      //   if (item.id.kind === 'youtube#playlist') {
-      //     return item;
-      //   }
-      // });
       this.firstWait(results).then(res => {
         this.setState({ videos: res, isLoading: false });
       });
@@ -229,18 +199,12 @@ class App extends Component {
     if (videos[videoIndex].type === "video") {
       return (
         <div className="video_video_wrapper">
-          {/*<Typography variant="caption" gutterBottom className="titlePieceTypo">*/}
-            {/*{videos[videoIndex].videos[0].title}*/}
-          {/*</Typography>*/}
           <Video videoId={videos[videoIndex].videos[0].videoId} />
         </div>
       );
     } else if (videos[videoIndex].type === "playlist") {
       return (
         <div className="video_video_wrapper">
-          {/*<Typography variant="caption" gutterBottom className="titlePieceTypo">*/}
-            {/*{videos[videoIndex].videos[trackItemNumber].title}*/}
-          {/*</Typography>*/}
           <Video videoId={videos[videoIndex].videos[trackItemNumber].videoId}
                  nextTrack={this.clickPreviousAndNextTrack}
                  trackItemNumber={trackItemNumber}
@@ -303,7 +267,6 @@ class App extends Component {
     return (
       <React.Fragment>
         <div className="global">
-          {/*<AppBar title="Electro Wheel" />*/}
           {this.state.secret ? <DataIntegrityCheck data={payload}/> : null}
           <MusicInfo
             genre={musicGenre}
