@@ -8,6 +8,7 @@ import Buttons from "./components/Buttons";
 import Video from "./components/Video";
 import data from "./data/musicData";
 import "./App.css";
+import { randomNumber, findNewIndex } from "./toolbox";
 
 class App extends Component {
   constructor(props) {
@@ -37,59 +38,59 @@ class App extends Component {
     this.handleMainClick();
   }
 
-  getSecret = (secretState) => {
-    this.setState({secret: secretState});
+  getSecret = secretState => {
+    this.setState({ secret: secretState });
   };
 
-  randomNumber = max => {
-    return Math.floor(Math.random() * max);
+  choosePieceAndFindTitle = async (artist) => {
+    const hasAlbums = artist.albums;
+    let album = {}, song = {};
+    if (hasAlbums) {
+      const albumsNumber = hasAlbums.length;
+      const albumIndex = await randomNumber(albumsNumber);
+      album = artist.albums[albumIndex];
+      const { title } = album;
+      return {album, song, title};
+    } else {
+      const songsNumber = artist.songs.length;
+      const songIndex = await randomNumber(songsNumber);
+      song = artist.songs[songIndex];
+      const { title } = song;
+      return {album, song, title};
+    }
   };
 
-  handleMainClick = () => {
+  handleMainClick = async () => {
     this.setState({
       isLoading: true,
       trackItemNumber: 0,
       buttonMessage: "",
       videoIndex: 0
     });
-    // 1. from data.length, choose one music type randomly
-    const length = data.music.length;
-    let randomMusicGenreIndex = this.randomNumber(length);
-    while (randomMusicGenreIndex === this.state.musicGenreIndex) {
-      randomMusicGenreIndex = this.randomNumber(length);
-    }
-    this.setState({ musicGenreIndex: randomMusicGenreIndex });
-    const randomMusic = data.music[randomMusicGenreIndex];
-    this.setState({ musicGenre: randomMusic.musicGenre }, () => {
-      // 2. Choose random artist from genre
-      const artistsNumber = randomMusic.artists.length;
-      const randomArtistIndex = this.randomNumber(artistsNumber);
-      const randomArtist = randomMusic.artists[randomArtistIndex].name;
-      this.setState({ artistName: randomArtist }, () => {
-        // 3. from specific artist, choose random album/song name.
-        const albumsNumbers =
-          randomMusic.artists[randomArtistIndex].albums.length;
-        if (!albumsNumbers) {
-          const songsNumbers =
-            randomMusic.artists[randomArtistIndex].songs.length;
-          const randomSongIndex = this.randomNumber(songsNumbers);
-          const randomSong =
-            randomMusic.artists[randomArtistIndex].songs[randomSongIndex];
-          this.setState({ song: randomSong, album: {} }, () => {
-            const { title } = this.state.song;
-            this.prepareURL(this.state.artistName, title);
-          });
-        } else {
-          const randomAlbumIndex = this.randomNumber(albumsNumbers);
-          const randomAlbum =
-            randomMusic.artists[randomArtistIndex].albums[randomAlbumIndex];
-          this.setState({ album: randomAlbum, song: {} }, () => {
-            const { title } = this.state.album;
-            this.prepareURL(this.state.artistName, title);
-          });
-        }
-      });
+
+    // 1. choose one music genre randomly - Music Genre -> MG
+    const { musicGenreIndex } = this.state;
+    const MGNumber = data.music.length;
+    const newMGIndex = await findNewIndex(musicGenreIndex, MGNumber);
+    const musicGenre = data.music[newMGIndex];
+    // 2. Choose random artist from genre
+    const artistsNumber = musicGenre.artists.length;
+    const artistIndex = await randomNumber(artistsNumber);
+    const artist = musicGenre.artists[artistIndex];
+    const artistName = artist.name;
+    // 3. from specific artist, choose random album/song name.
+    const piece = await this.choosePieceAndFindTitle(artist);
+
+    this.setState({
+      musicGenreIndex: newMGIndex,
+      musicGenre: musicGenre.musicGenre,
+      artistName: artistName,
+      album: piece.album,
+      song: piece.song
     });
+
+    this.prepareURL(artistName, piece.title);
+
   };
 
   prepareURL = (artistName, pieceTitle) => {
@@ -205,10 +206,11 @@ class App extends Component {
     } else if (videos[videoIndex].type === "playlist") {
       return (
         <div className="video_video_wrapper">
-          <Video videoId={videos[videoIndex].videos[trackItemNumber].videoId}
-                 nextTrack={this.clickPreviousAndNextTrack}
-                 trackItemNumber={trackItemNumber}
-                 tracksNumber={videos[videoIndex].length}
+          <Video
+            videoId={videos[videoIndex].videos[trackItemNumber].videoId}
+            nextTrack={this.clickPreviousAndNextTrack}
+            trackItemNumber={trackItemNumber}
+            tracksNumber={videos[videoIndex].length}
           />
           <NextPreviousTrack
             previousTrack={this.clickPreviousAndNextTrack}
@@ -235,6 +237,7 @@ class App extends Component {
   };
 
   render() {
+    console.log('this.state', this.state);
     const {
       artistName,
       buttonMessage,
@@ -267,7 +270,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <div className="global">
-          {this.state.secret ? <DataIntegrityCheck data={payload}/> : null}
+          {this.state.secret ? <DataIntegrityCheck data={payload} /> : null}
           <MusicInfo
             genre={musicGenre}
             artist={artistName}
