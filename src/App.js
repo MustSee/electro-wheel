@@ -8,7 +8,7 @@ import Buttons from "./components/Buttons";
 import Video from "./components/Video";
 import data from "./data/musicData";
 import "./App.css";
-import { randomNumber, findNewIndex } from "./toolbox";
+import { choosePieceAndFindTitle, randomNumber, findNewIndex } from "./toolbox";
 
 class App extends Component {
   constructor(props) {
@@ -42,24 +42,6 @@ class App extends Component {
     this.setState({ secret: secretState });
   };
 
-  choosePieceAndFindTitle = async (artist) => {
-    const hasAlbums = artist.albums;
-    let album = {}, song = {};
-    if (hasAlbums) {
-      const albumsNumber = hasAlbums.length;
-      const albumIndex = await randomNumber(albumsNumber);
-      album = artist.albums[albumIndex];
-      const { title } = album;
-      return {album, song, title};
-    } else {
-      const songsNumber = artist.songs.length;
-      const songIndex = await randomNumber(songsNumber);
-      song = artist.songs[songIndex];
-      const { title } = song;
-      return {album, song, title};
-    }
-  };
-
   handleMainClick = async () => {
     this.setState({
       isLoading: true,
@@ -79,7 +61,7 @@ class App extends Component {
     const artist = musicGenre.artists[artistIndex];
     const artistName = artist.name;
     // 3. from specific artist, choose random album/song name.
-    const piece = await this.choosePieceAndFindTitle(artist);
+    const piece = await choosePieceAndFindTitle(artist);
 
     this.setState({
       musicGenreIndex: newMGIndex,
@@ -90,7 +72,6 @@ class App extends Component {
     });
 
     this.prepareURL(artistName, piece.title);
-
   };
 
   prepareURL = (artistName, pieceTitle) => {
