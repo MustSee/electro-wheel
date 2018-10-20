@@ -69,9 +69,7 @@ class App extends Component {
       artistName: artistName,
       album: piece.album,
       song: piece.song
-    });
-
-    this.prepareURL(artistName, piece.title);
+    }, () => this.prepareURL(artistName, piece.title));
   };
 
   prepareURL = (artistName, pieceTitle) => {
