@@ -73,8 +73,6 @@ class App extends Component {
   };
 
   prepareURL = (artistName, pieceTitle) => {
-    // Rajouter full album si c'est un album,
-    // Le style de musique si le nom de l'artiste est artiste divers, etc...
     let name = artistName === "artistes divers" ? "" : artistName;
     const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
     const URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${pieceTitle} ${name}&key=${YOUTUBE_API_KEY}`;
@@ -178,13 +176,11 @@ class App extends Component {
     const { videoIndex, videos, trackItemNumber } = this.state;
     if (videos[videoIndex].type === "video") {
       return (
-        <div className="video_video_wrapper">
-          <Video videoId={videos[videoIndex].videos[0].videoId} />
-        </div>
+        <Video videoId={videos[videoIndex].videos[0].videoId} />
       );
     } else if (videos[videoIndex].type === "playlist") {
       return (
-        <div className="video_video_wrapper">
+        <React.Fragment>
           <Video
             videoId={videos[videoIndex].videos[trackItemNumber].videoId}
             nextTrack={this.clickPreviousAndNextTrack}
@@ -197,7 +193,7 @@ class App extends Component {
             trackItemNumber={trackItemNumber}
             tracksNumber={videos[videoIndex].length}
           />
-        </div>
+        </React.Fragment>
       );
     }
   };
@@ -269,7 +265,9 @@ class App extends Component {
                 <CircularProgress color="secondary" thickness={3} size={100} />
               </div>
             ) : (
-              this.renderVideo()
+              <div className="video_video_wrapper">
+                { this.renderVideo() }
+              </div>
             )}
           </div>
         </div>
