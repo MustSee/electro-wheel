@@ -32,7 +32,7 @@ class Random extends Component {
   }
 
   componentDidMount() {
-    //this.handleMainClick();
+    this.handleMainClick();
   }
 
   randomNumber = max => {
