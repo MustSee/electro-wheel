@@ -40,7 +40,6 @@ class Random extends Component {
   };
 
   handleMainClick = () => {
-    console.log('handleMainClick');
     this.setState({
       isLoading: true,
       trackItemNumber: 0,
