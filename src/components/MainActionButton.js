@@ -10,15 +10,14 @@ function MainActionButton(props) {
   };
 
   return (
-    <div className="musicInfo_mainActionButton_wrapper">
+    <div className="wrapper">
       <Button
         onClick={() => props.handleMainSearch()}
         style={styles.mainActionButton}
-        className="musicInfo_mainActionButton"
         variant="extendedFab"
         size="medium"
       >
-        <div className="musicInfo_mainActionButton_title">Roll the Wheel</div>
+        <div className="mainActionButton_title ff">Roll the Wheel</div>
       </Button>
     </div>
   );
