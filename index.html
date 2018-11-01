@@ -1,1 +1,355 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,shrink-to-fit=no"><meta name="theme-color" content="#000000"><link rel="manifest" href="/manifest.json"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"><link rel="apple-touch-icon" sizes="60x60" href="/img/icons/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="57x57" href="/img/icons/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="72x72" href="/img/icons/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/img/icons/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/img/icons/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/img/icons/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/img/icons/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/img/icons/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="/img/icons/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/img/icons/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff"><title>Electro Wheel</title><link href="/static/css/main.6b3b2b1f.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div><script type="text/javascript" src="/static/js/main.c4f6132b.js"></script></body></html>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,shrink-to-fit=no"><meta name="theme-color" content="#000000"><link rel="manifest" href="/manifest.json"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"><link rel="apple-touch-icon" sizes="60x60" href="/img/icons/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="57x57" href="/img/icons/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="72x72" href="/img/icons/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/img/icons/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/img/icons/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/img/icons/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/img/icons/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/img/icons/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="/img/icons/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/img/icons/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff"><title>Electro Wheel</title><meta name="description" content="Dedicated to electro music, present the playlist of the book modulations that relates the history of this specific music."><link href="/static/css/main.6b3b2b1f.css" rel="stylesheet"><style data-jss="" data-meta="MuiTouchRipple">
+.jss39 {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+  position: absolute;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.jss40 {
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+  position: absolute;
+}
+.jss41 {
+  opacity: 0.3;
+  transform: scale(1);
+  animation: mui-ripple-enter 550ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.jss42 {
+  animation-duration: 200ms;
+}
+.jss43 {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  display: block;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+.jss44 {
+  opacity: 0;
+  animation: mui-ripple-exit 550ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.jss45 {
+  top: 0;
+  left: 0;
+  position: absolute;
+  animation: mui-ripple-pulsate 2500ms cubic-bezier(0.4, 0, 0.2, 1) 200ms infinite;
+}
+@keyframes mui-ripple-enter {
+  0% {
+    opacity: 0.1;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+}
+@keyframes mui-ripple-exit {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes mui-ripple-pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.92);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+</style><style data-jss="" data-meta="MuiButtonBase">
+.jss36 {
+  color: inherit;
+  cursor: pointer;
+  margin: 0;
+  border: 0;
+  display: inline-flex;
+  padding: 0;
+  outline: none;
+  position: relative;
+  user-select: none;
+  align-items: center;
+  border-radius: 0;
+  vertical-align: middle;
+  justify-content: center;
+  -moz-appearance: none;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.jss36::-moz-focus-inner {
+  border-style: none;
+}
+.jss36.jss37 {
+  cursor: default;
+  pointer-events: none;
+}
+</style><style data-jss="" data-meta="MuiButton">
+.jss10 {
+  color: rgba(0, 0, 0, 0.87);
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  min-width: 64px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  min-height: 36px;
+  box-sizing: border-box;
+  line-height: 1.4em;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.jss10:hover {
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+.jss10.jss30 {
+  color: rgba(0, 0, 0, 0.26);
+}
+@media (hover: none) {
+  .jss10:hover {
+    background-color: transparent;
+  }
+}
+.jss10:hover.jss30 {
+  background-color: transparent;
+}
+.jss11 {
+  width: 100%;
+  display: inherit;
+  align-items: inherit;
+  justify-content: inherit;
+}
+.jss13 {
+  color: #fbe9e7;
+}
+.jss13:hover {
+  background-color: rgba(251, 233, 231, 0.08);
+}
+@media (hover: none) {
+  .jss13:hover {
+    background-color: transparent;
+  }
+}
+.jss14 {
+  color: #ff9100;
+}
+.jss14:hover {
+  background-color: rgba(255, 145, 0, 0.08);
+}
+@media (hover: none) {
+  .jss14:hover {
+    background-color: transparent;
+  }
+}
+.jss18 {
+  border: 1px solid rgba(0, 0, 0, 0.23);
+}
+.jss19 {
+  border: 1px solid rgba(251, 233, 231, 0.5);
+}
+.jss19:hover {
+  border: 1px solid #fbe9e7;
+}
+.jss19.jss30 {
+  border: 1px solid rgba(0, 0, 0, 0.26);
+}
+.jss20 {
+  border: 1px solid rgba(255, 145, 0, 0.5);
+}
+.jss20:hover {
+  border: 1px solid #ff9100;
+}
+.jss20.jss30 {
+  border: 1px solid rgba(0, 0, 0, 0.26);
+}
+.jss21 {
+  color: rgba(0, 0, 0, 0.87);
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  background-color: #e0e0e0;
+}
+.jss21.jss29 {
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),0px 6px 10px 0px rgba(0, 0, 0, 0.14),0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}
+.jss21:active {
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),0px 8px 10px 1px rgba(0, 0, 0, 0.14),0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+.jss21.jss30 {
+  color: rgba(0, 0, 0, 0.26);
+  box-shadow: none;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+.jss21:hover {
+  background-color: #d5d5d5;
+}
+@media (hover: none) {
+  .jss21:hover {
+    background-color: #e0e0e0;
+  }
+}
+.jss21:hover.jss30 {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+.jss22 {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #fbe9e7;
+}
+.jss22:hover {
+  background-color: #c8b7b5;
+}
+@media (hover: none) {
+  .jss22:hover {
+    background-color: #fbe9e7;
+  }
+}
+.jss23 {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #ff9100;
+}
+.jss23:hover {
+  background-color: rgb(178, 101, 0);
+}
+@media (hover: none) {
+  .jss23:hover {
+    background-color: #ff9100;
+  }
+}
+.jss27 {
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  min-width: 0;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),0px 6px 10px 0px rgba(0, 0, 0, 0.14),0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 50%;
+}
+.jss27:active {
+  box-shadow: 0px 7px 8px -4px rgba(0, 0, 0, 0.2),0px 12px 17px 2px rgba(0, 0, 0, 0.14),0px 5px 22px 4px rgba(0, 0, 0, 0.12);
+}
+.jss28 {
+  width: auto;
+  height: 48px;
+  padding: 0 16px;
+  min-width: 48px;
+  border-radius: 24px;
+}
+.jss31 {
+  color: inherit;
+}
+.jss32 {
+  width: 40px;
+  height: 40px;
+}
+.jss33 {
+  padding: 7px 8px;
+  min-width: 64px;
+  font-size: 0.8125rem;
+  min-height: 32px;
+}
+.jss34 {
+  padding: 8px 24px;
+  min-width: 112px;
+  font-size: 0.9375rem;
+  min-height: 40px;
+}
+.jss35 {
+  width: 100%;
+}
+</style><style data-jss="" data-meta="MuiCircularProgress">
+.jss46 {
+  display: inline-block;
+  line-height: 1;
+}
+.jss47 {
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.jss48 {
+  animation: mui-progress-circular-rotate 1.4s linear infinite;
+}
+.jss49 {
+  color: #fbe9e7;
+}
+.jss50 {
+  color: #ff9100;
+}
+.jss52 {
+  stroke: currentColor;
+}
+.jss53 {
+  transition: stroke-dashoffset 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.jss54 {
+  animation: mui-progress-circular-dash 1.4s ease-in-out infinite;
+  stroke-dasharray: 80px, 200px;
+  stroke-dashoffset: 0px;
+}
+@keyframes mui-progress-circular-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes mui-progress-circular-dash {
+  0% {
+    stroke-dasharray: 1px, 200px;
+    stroke-dashoffset: 0px;
+  }
+  50% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -15px;
+  }
+  100% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -120px;
+  }
+}
+</style><style data-jss="" data-meta="MuiIcon">
+.jss1 {
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  font-size: 24px;
+  user-select: none;
+  flex-shrink: 0;
+}
+.jss2 {
+  color: #fbe9e7;
+}
+.jss3 {
+  color: #ff9100;
+}
+.jss4 {
+  color: rgba(0, 0, 0, 0.54);
+}
+.jss5 {
+  color: #f44336;
+}
+.jss6 {
+  color: rgba(0, 0, 0, 0.26);
+}
+.jss7 {
+  font-size: inherit;
+}
+.jss8 {
+  font-size: 20px;
+}
+.jss9 {
+  font-size: 36px;
+}
+</style></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"><div class="global"><div class="musicInfo"><div class="musicInfo_genre_wrapper"><div class="musicInfo_genre"></div></div><div class="musicInfo_artistName_wrapper"><div class="musicInfo_artistName"></div></div><div class="musicInfo_title_wrapper"><span><span class="material-icons jss1" aria-hidden="true">music_note</span></span><div class="musicInfo_title"></div></div><div class="musicInfo_mainActionButton_wrapper"><button tabindex="0" class="jss36 jss10 jss27 jss28 jss21 jss24 musicInfo_mainActionButton" type="button" style="height:40px;background-color:#ff9100"><span class="jss11"><div class="musicInfo_mainActionButton_title">Roll the Wheel</div></span><span class="jss39"></span></button></div></div><div class="buttons"><button tabindex="-1" class="jss36 jss37 jss10 jss12 jss18 jss33 jss30" type="button" disabled="" style="margin-right:10px;background-color:#fff"><span class="jss11">Previous</span></button><button tabindex="-1" class="jss36 jss37 jss10 jss12 jss18 jss33 jss30" type="button" disabled="" style="background-color:#fff"><span class="jss11">Next YouTube result</span></button></div><div class="video"><div class="video_circularProgress"><div class="jss46 jss50 jss48" style="width:100px;height:100px" role="progressbar"><svg class="jss51" viewBox="22 22 44 44"><circle class="jss52 jss54" cx="44" cy="44" r="20.5" fill="none" stroke-width="3"></circle></svg></div></div></div></div></div><script type="text/javascript" src="/static/js/main.7a105237.js"></script></body></html>
