@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import { CircularProgress } from "@material-ui/core";
 import MusicInfo from "./MusicInfo";
-import DataIntegrityCheck from "./DataIntegrityCheck";
 import NextPreviousTrack from "./NextPreviousTrack";
 import Buttons from "./Buttons";
 import Video from "./Video";
-import SimpleMenu from "./SimpleMenu";
 import data from "./../data/musicData";
 import "./../App.css";
 
@@ -21,7 +19,6 @@ class Random extends Component {
       isLoading: true,
       musicGenre: "",
       musicGenreIndex: null,
-      secret: false,
       song: {},
       trackItemNumber: 0,
       videoIndex: 0,
@@ -37,32 +34,6 @@ class Random extends Component {
   componentDidMount() {
     this.handleMainClick();
   }
-
-  // onlineCheck = () => {
-  //   console.log('onlineCheck');
-  //   const baseUrl = 'https://www.google.com';
-  //   let xhr = new XMLHttpRequest();
-  //   return new Promise((resolve, reject)=>{
-  //     xhr.onload = () => {
-  //       // Set online status
-  //       console.log('onlineCheck TRUE');
-  //       this.setState({ isOnline: true });
-  //       resolve(true);
-  //     };
-  //     xhr.onerror = () => {
-  //       // Set online status
-  //       console.log('onlineCheck FALSE');
-  //       this.setState({ isOnline: false });
-  //       reject(false);
-  //     };
-  //     xhr.open('GET', baseUrl, true);
-  //     xhr.send();
-  //   });
-  // };
-
-  getSecret = (secretState) => {
-    this.setState({secret: secretState});
-  };
 
   randomNumber = max => {
     return Math.floor(Math.random() * max);
@@ -116,8 +87,6 @@ class Random extends Component {
   };
 
   prepareURL = (artistName, pieceTitle) => {
-    // Rajouter full album si c'est un album,
-    // Le style de musique si le nom de l'artiste est artiste divers, etc...
     let name = artistName === "artistes divers" ? "" : artistName;
     const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
     const URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${pieceTitle} ${name}&key=${YOUTUBE_API_KEY}`;
@@ -193,7 +162,6 @@ class Random extends Component {
             if (videos[0]) {
               resolve(videos);
             }
-            //   videoIndex: 0 // Voir si c'est la bonne place pour le resetter à 0
           });
         }
       });
@@ -203,12 +171,6 @@ class Random extends Component {
   handleYoutubeAPI = URL => {
     axios.get(URL).then(res => {
       const results = res.data.items;
-      // subResults to test playlists
-      // const subResults = results.filter((item) => {
-      //   if (item.id.kind === 'youtube#playlist') {
-      //     return item;
-      //   }
-      // });
       this.firstWait(results).then(res => {
         this.setState({ videos: res, isLoading: false });
       });
@@ -229,18 +191,12 @@ class Random extends Component {
     if (videos[videoIndex].type === "video") {
       return (
         <div className="video_video_wrapper">
-          {/*<Typography variant="caption" gutterBottom className="titlePieceTypo">*/}
-          {/*{videos[videoIndex].videos[0].title}*/}
-          {/*</Typography>*/}
           <Video videoId={videos[videoIndex].videos[0].videoId} />
         </div>
       );
     } else if (videos[videoIndex].type === "playlist") {
       return (
         <div className="video_video_wrapper">
-          {/*<Typography variant="caption" gutterBottom className="titlePieceTypo">*/}
-          {/*{videos[videoIndex].videos[trackItemNumber].title}*/}
-          {/*</Typography>*/}
           <Video videoId={videos[videoIndex].videos[trackItemNumber].videoId}
                  nextTrack={this.clickPreviousAndNextTrack}
                  trackItemNumber={trackItemNumber}
@@ -292,26 +248,14 @@ class Random extends Component {
       }
       : null;
 
-    // payloadData for integrity check
-    let payload = {
-      musicGenre,
-      artistName,
-      piece: album.title ? album : song,
-      videos: videos[videoIndex]
-    };
-
     return (
       <React.Fragment>
         <div className="global">
-          {this.state.secret ? <SimpleMenu /> : null }
-          {/*<AppBar title="Electro Wheel" />*/}
-          {this.state.secret ? <DataIntegrityCheck data={payload}/> : null}
           <MusicInfo
             genre={musicGenre}
             artist={artistName}
             piece={album.title ? album : song}
             handleMainSearch={this.handleMainClick}
-            getSecret={this.getSecret}
           />
           <Buttons
             handleVideoIndex={status => this.setVideoIndex(status)}

@@ -14,32 +14,6 @@ class MusicInfo extends Component {
     this.props.handleMainSearch();
   };
 
-  clickOnGenre = () => {
-    this.setState({
-      secret: 1
-    });
-  };
-
-  clickOnArtist = () => {
-    if (this.state.secret === 2) {
-      this.setState({secret: 3});
-      this.props.getSecret(true);
-    } else {
-      this.setState({secret: 0});
-    }
-  };
-
-  clickOnTitle = () => {
-    if (this.state.secret === 1) {
-      this.setState({secret: 2});
-    } else if (this.state.secret === 3) {
-      this.props.getSecret(false);
-    } else {
-      this.setState({secret: 0});
-
-    }
-  };
-
   renderIcon = () => {
     const type = this.props.piece.type;
     if (type === "album")
@@ -59,13 +33,13 @@ class MusicInfo extends Component {
     const { genre, artist, piece } = this.props;
     return (
       <div className="musicInfo">
-        <div className="musicInfo_genre_wrapper" onClick={this.clickOnGenre}>
+        <div className="musicInfo_genre_wrapper">
           <div className="musicInfo_genre">{genre.toUpperCase()}</div>
         </div>
-        <div className="musicInfo_artistName_wrapper" onClick={this.clickOnArtist}>
+        <div className="musicInfo_artistName_wrapper">
           <div className="musicInfo_artistName">{artist}</div>
         </div>
-        <div className="musicInfo_title_wrapper" onClick={this.clickOnTitle}>
+        <div className="musicInfo_title_wrapper">
           {this.renderIcon()}
           <div className="musicInfo_title">{piece.title}</div>
         </div>
