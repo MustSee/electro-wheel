@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-snapshot";
 import { HashRouter } from 'react-router-dom'
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import App from "./App";
@@ -17,7 +17,7 @@ const theme = createMuiTheme({
   }
 });
 
-ReactDOM.render(
+render(
   <MuiThemeProvider theme={theme}>
     <HashRouter>
       <App />
