@@ -32,7 +32,7 @@ class Random extends Component {
   }
 
   componentDidMount() {
-    this.handleMainClick();
+    //this.handleMainClick();
   }
 
   randomNumber = max => {
@@ -40,6 +40,7 @@ class Random extends Component {
   };
 
   handleMainClick = () => {
+    console.log('handleMainClick');
     this.setState({
       isLoading: true,
       trackItemNumber: 0,
