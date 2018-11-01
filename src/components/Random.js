@@ -6,7 +6,7 @@ import NextPreviousTrack from "./NextPreviousTrack";
 import Buttons from "./Buttons";
 import Video from "./Video";
 import data from "./../data/musicData";
-import "./../App.css";
+import "../App.scss";
 
 class Random extends Component {
   constructor(props) {
