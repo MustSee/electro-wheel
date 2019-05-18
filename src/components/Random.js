@@ -89,23 +89,8 @@ class Random extends Component {
   prepareURL = (artistName, pieceTitle) => {
     let name = artistName === "artistes divers" ? "" : artistName;
     const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
-    const URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${pieceTitle} ${name}&key=${YOUTUBE_API_KEY}`;
+    const URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&fields=items(id,snippet)&maxResults=10&q=${pieceTitle} ${name}&key=${YOUTUBE_API_KEY}`;
     this.handleYoutubeAPI(URL);
-  };
-
-  waitForItems = playlistItems => {
-    return new Promise(resolve => {
-      let items = [];
-      playlistItems.forEach((item, j) => {
-        items[j] = {
-          type: "playlistItem",
-          position: item.snippet.position,
-          videoId: item.contentDetails.videoId,
-          title: item.snippet.title
-        };
-      });
-      resolve(items);
-    });
   };
 
   wait = result => {
@@ -124,15 +109,22 @@ class Random extends Component {
         .then(res => {
           const playlistItems = res.data.items;
           const length = playlistItems.length;
-          this.waitForItems(playlistItems).then(items => {
-            let videos = {
-              type: "playlist",
-              length,
-              playlistId,
-              videos: items
+          let items = [];
+          playlistItems.forEach((item, j) => {
+            items[j] = {
+              type: "playlistItem",
+              position: item.snippet.position,
+              videoId: item.contentDetails.videoId,
+              title: item.snippet.title
             };
-            resolve(videos);
           });
+          let videos = {
+            type: "playlist",
+            length,
+            playlistId,
+            videos: items
+          };
+          resolve(videos);
         });
     });
   };
@@ -198,9 +190,9 @@ class Random extends Component {
       return (
         <div className="video_video_wrapper">
           <Video videoId={videos[videoIndex].videos[trackItemNumber].videoId}
-                 nextTrack={this.clickPreviousAndNextTrack}
-                 trackItemNumber={trackItemNumber}
-                 tracksNumber={videos[videoIndex].length}
+            nextTrack={this.clickPreviousAndNextTrack}
+            trackItemNumber={trackItemNumber}
+            tracksNumber={videos[videoIndex].length}
           />
           <NextPreviousTrack
             previousTrack={this.clickPreviousAndNextTrack}
@@ -269,8 +261,8 @@ class Random extends Component {
                 <CircularProgress color="secondary" thickness={3} size={100} />
               </div>
             ) : (
-              this.renderVideo()
-            )}
+                this.renderVideo()
+              )}
           </div>
         </div>
       </React.Fragment>
