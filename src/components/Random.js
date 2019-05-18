@@ -136,6 +136,7 @@ class Random extends Component {
       results.forEach((result, i) => {
         if (result.id.kind === "youtube#video") {
           types.push("video");
+          console.log('types', types, i);
           videos[i] = {
             type: "video",
             videos: [
@@ -150,8 +151,10 @@ class Random extends Component {
           }
         } else if (result.id.kind === "youtube#playlist") {
           this.wait(result).then(res => {
+            types.push("playlist");
+            console.log('types', types, i);
             videos[i] = res;
-            if (videos[0]) {
+            if (types.length === results.length) {
               resolve(videos);
             }
           });
@@ -164,6 +167,7 @@ class Random extends Component {
     axios.get(URL).then(res => {
       const results = res.data.items;
       this.firstWait(results).then(res => {
+        console.log('after');
         this.setState({ videos: res, isLoading: false });
       });
     });
